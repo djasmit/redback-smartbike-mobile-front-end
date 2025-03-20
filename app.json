@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "vrbike",
     "name": "vrbike",
     "slug": "vrbike",
     "version": "1.0.0",
@@ -22,7 +23,9 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"]
   }
 }
