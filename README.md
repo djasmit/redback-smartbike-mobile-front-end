@@ -9,6 +9,6 @@
 
 4. scan QR code and download Expo App to run on physical device.
 
- # OR
+ ## OR
 
 5. key i for ios simulator or a for android simulator (open simulator first)
