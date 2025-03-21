@@ -1,9 +1,14 @@
-clone repo
+# How to run the project
 
-install dependencies by running npm install
 
-run npx expo start
+1. clone repo
 
-scan QR code and download Expo App to run on physical device.
+2. install dependencies by running npm install
 
-key i for ios simulator or a for android simulator
+3. run npx expo start
+
+4. scan QR code and download Expo App to run on physical device.
+
+ #OR
+
+5. key i for ios simulator or a for android simulator (open simulator first)
