@@ -9,7 +9,7 @@
 
 4. run ```npx expo start```
 
-5. scan QR code and download Expo App to run on physical device **OR** key i for ios simulator or a for android simulator (open simulator first)
+5. scan QR code and download Expo App to run on physical device **OR** key 'i' for ios simulator or 'a' for android simulator (open simulator first)
 
 # To contribute to poject 
 
