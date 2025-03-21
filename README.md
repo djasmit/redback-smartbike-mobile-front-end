@@ -11,6 +11,9 @@
 
 5. scan QR code and download Expo App to run on physical device **OR** key 'i' for ios simulator or 'a' for android simulator (open simulator first)
 
+**No device?** 
+key 'w' to run in the browser
+
 # To contribute to poject 
 
 1. Fork the repository
