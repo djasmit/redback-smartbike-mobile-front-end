@@ -33,7 +33,7 @@ const workoutItems = [
 
 const workouts = () => {
   return (
-    <View className="flex-1 bg-[#111111] p-6">
+    <View className="flex-1 bg-[#111111] p-6 ">
       <FlatList
         ListHeaderComponent={
           <Text className="text-white font-bold text-4xl">
@@ -41,6 +41,7 @@ const workouts = () => {
           </Text>
         }
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 60 }}
         className="mt-12"
         data={workoutItems}
         renderItem={({ item }) => (
