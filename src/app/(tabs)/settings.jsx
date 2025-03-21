@@ -17,7 +17,7 @@ const settings = () => {
           <Text className="font-bold text-lg text-white">Jordan Anderson</Text>
         </SafeAreaView>
       </LinearGradient>
-      <View className="h-full border-2 border-red-500 relative -top-10 rounded-[48px] bg-white py-8 px-6">
+      <View className="h-full relative -top-10 rounded-[48px] bg-white py-8 px-6">
         <Text className="text-3xl font-bold text-center">Settings</Text>
 
         <FlatList
