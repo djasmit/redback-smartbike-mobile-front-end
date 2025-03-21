@@ -5,7 +5,7 @@
 
 2. Install Node if not already installed and update to latest version
 
-3. install dependencies by ```running npm install```
+3. install dependencies by running ```npm install```
 
 4. run ```npx expo start```
 
