@@ -40,7 +40,7 @@ const index = () => {
             Forgot password?
           </Link>
         </View>
-        <View className="flex-grow justify-center border-red-500">
+        <View className="flex-grow justify-center">
           <View className="flex-row justify-between w-1/2 self-center">
             <LoginIcon image={require("@assets/apple-logo.png")} />
             <LoginIcon image={require("@assets/facebook.png")} />
