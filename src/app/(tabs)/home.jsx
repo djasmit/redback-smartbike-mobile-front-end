@@ -4,7 +4,7 @@ import Avatar from "@/components/Avatar";
 
 const Home = () => {
   return (
-    <SafeAreaView className="flex-1 bg-[#111111]">
+    <SafeAreaView className="flex-1">
       <View className="p-2 flex-row items-center gap-2">
         <Avatar size={50} />
         <View>
