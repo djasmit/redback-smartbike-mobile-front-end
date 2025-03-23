@@ -9,7 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "brand-navy": "#163E6A",
+        "brand-purple": "#340C4C",
+        "brand-orange": "#EB7363",
+        "brand-port": "#5C244C",
+        "brand-rouge": "#9C4454",
       },
     },
   },
