@@ -5,7 +5,9 @@ import { LinearGradient } from "expo-linear-gradient";
 const WorkoutCard = ({ title, image, bgColor }) => {
   return (
     <LinearGradient
-      colors={[bgColor, "#95ffffff"]}
+      colors={[bgColor, "#ffffff"]}
+      start={[0, 0]} // Start from the left
+      end={[1, 0]} // End on the right
       style={{
         overflow: "hidden",
         borderRadius: 48,
