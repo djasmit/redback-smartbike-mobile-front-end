@@ -70,13 +70,6 @@ This project uses tailwind for styling. Tailwind documentation can be found at :
 
 ```<Text styles={fontSize: "20px", fontWeight: 'bold}> Hello, World! </Text>```
 
-
- !["#340C4C"](https://placehold.co/15x15/f03c15/f03c15.png) `"#340C4C"`
- ![##EB7363](https://placehold.co/15x15/c5f015/c5f015.png) `#EB7363`
- ![#5C244C](https://placehold.co/15x15/1589F0/1589F0.png) `#5C244C`
-  ![#9C4454](https://placehold.co/15x15/1589F0/1589F0.png) `#9C4454`
-
-
 Where tailwind classes are unavailable such as non React Native components, inline styles should be used to maintain readability 
 
 
