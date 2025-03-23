@@ -10,20 +10,7 @@ const _layout = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: "#11111180",
-          borderRadius: 100,
-          marginHorizontal: 20,
-          marginBottom: 32,
-          height: 52,
-          paddingTop: 8,
-          position: "absolute",
-          zIndex: 10,
-          overflow: "hidden",
-          shadowColor: "",
-          borderWidth: 1,
-          borderColor: "#11111180",
-        },
+
         tabBarItemStyle: {
           borderTopWidth: 0,
         },
@@ -38,7 +25,7 @@ const _layout = () => {
               <Entypo
                 name="home"
                 size={24}
-                color={focused ? "#28887D" : "white"}
+                color={focused ? "#EB7363" : "gray"}
               />
             </>
           ),
@@ -53,7 +40,7 @@ const _layout = () => {
               <Entypo
                 name="bar-graph"
                 size={24}
-                color={focused ? "#28887D" : "white"}
+                color={focused ? "#EB7363" : "gray"}
               />
             </>
           ),
@@ -68,7 +55,7 @@ const _layout = () => {
               <MaterialCommunityIcons
                 name="weight-lifter"
                 size={24}
-                color={focused ? "#28887D" : "white"}
+                color={focused ? "#EB7363" : "gray"}
               />
             </>
           ),
@@ -83,7 +70,7 @@ const _layout = () => {
               <Entypo
                 name="cog"
                 size={24}
-                color={focused ? "#28887D" : "white"}
+                color={focused ? "#EB7363" : "gray"}
               />
             </>
           ),
