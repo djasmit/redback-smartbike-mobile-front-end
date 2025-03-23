@@ -33,10 +33,10 @@ const workoutItems = [
 
 const workouts = () => {
   return (
-    <View className="flex-1 bg-[#111111] p-6 ">
+    <View className="flex-1 bg-white p-6 ">
       <FlatList
         ListHeaderComponent={
-          <Text className="text-white font-bold text-4xl">
+          <Text className="text-brand-purple font-bold text-4xl">
             Track your fitness
           </Text>
         }
