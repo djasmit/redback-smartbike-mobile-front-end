@@ -18,6 +18,7 @@ const TextInputWithLogo = ({
     >
       {logo}
       <TextInput
+        autoCapitalize="none"
         onChangeText={(text) => setData({ ...data, [id]: text })}
         secureTextEntry={secure}
         className="w-full rounded-full"
