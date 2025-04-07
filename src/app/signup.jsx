@@ -6,18 +6,49 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Keyboard,
+  Button,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import "../../global.css";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import TextInputWithLogo from "@/components/TextInputWithLogo";
 import LoginIcon from "@/components/LoginIcon";
-import { Link, useNavigation } from "expo-router";
-import "@expo/metro-runtime";
+import { Link, router, useNavigation } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
-const index = () => {
-  const navigation = useNavigation();
+const SignUp = () => {
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handleSignup = async () => {
+    if (!userData.username || !userData.email || !userData.password) {
+      alert("Please complete all fields");
+      return;
+    }
+    const response = await fetch(`http://0.0.0.0:8000/signup/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    switch (response.status) {
+      case 409:
+        alert("This email or username already exists");
+        break;
+      case 400:
+        alert("An error occured");
+        break;
+      case 201:
+        alert("The user was created");
+        router.push("/home");
+    }
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <LinearGradient style={{ flex: 1 }} colors={["#340C4C", "#EB7363"]}>
@@ -30,30 +61,44 @@ const index = () => {
               resizeMode="contain"
             />
             <Text className="text-brand-navy text-center text-3xl font-bold">
-              Redback Smart Bike
+              Tell Us About Yourself
+            </Text>
+            <Text className="text-xl font-semibold text-center">
+              Create an Account
             </Text>
             <View className="gap-4 my-12">
               <TextInputWithLogo
-                logo={<AntDesign name="mail" size={24} color="black" />}
-                placeholder={"example@gmail.com"}
+                data={userData}
+                setData={setUserData}
+                placeholder={"Name"}
+                logo={<AntDesign name="user" size={24} color="black" />}
+                id="username"
               />
               <TextInputWithLogo
+                data={userData}
+                setData={setUserData}
+                logo={<AntDesign name="mail" size={24} color="black" />}
+                placeholder={"example@gmail.com"}
+                id={"email"}
+              />
+
+              <TextInputWithLogo
+                data={userData}
+                setData={setUserData}
                 secure
                 logo={<AntDesign name="lock1" size={28} color="black" />}
                 placeholder={"Enter your password"}
+                id={"password"}
               />
             </View>
-            <Link
-              href={"/home"}
+            <TouchableOpacity
+              onPress={handleSignup}
               className="bg-brand-purple w-2/3 self-center rounded-full px-6 py-4"
             >
-              <Text className="text-white bg-brand-purplefont-bold text-lg text-center">
-                Sign In
+              <Text className="text-white text-lg text-center">
+                Create Account
               </Text>
-            </Link>
-            <Link className="self-center mt-6" href={"/forgot-password"}>
-              <Text>Forgot password?</Text>
-            </Link>
+            </TouchableOpacity>
           </View>
           <View className="flex flex-grow justify-center gap-4">
             <View className="flex-row justify-between w-1/2 self-center">
@@ -62,10 +107,10 @@ const index = () => {
               <LoginIcon image={require("@assets/google.png")} />
             </View>
             <Text className="text-white text-center">
-              Dont have an account?{" "}
-              <Link href={"/signup"}>
+              Already have an account?{" "}
+              <Link href={"/index"}>
                 <Text className="text-brand-purple font-semibold">
-                  Sign up here
+                  Sign in here
                 </Text>
               </Link>
             </Text>
@@ -76,4 +121,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default SignUp;
