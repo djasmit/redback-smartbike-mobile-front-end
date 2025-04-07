@@ -47,6 +47,7 @@ const SignUp = () => {
       case 201:
         alert("The user was created");
         router.push("/home");
+        break;
     }
   };
   return (

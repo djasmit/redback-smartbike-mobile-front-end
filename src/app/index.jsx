@@ -6,17 +6,41 @@ import {
   StatusBar,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
 import "../../global.css";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import TextInputWithLogo from "@/components/TextInputWithLogo";
 import LoginIcon from "@/components/LoginIcon";
-import { Link, useNavigation } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import "@expo/metro-runtime";
 import { LinearGradient } from "expo-linear-gradient";
 
 const index = () => {
+  const handleLogin = async () => {
+    const response = await fetch(`http://0.0.0.0:8000/login/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    switch (response.status) {
+      case 404:
+        alert("Invalid credentials: email doesn't exist");
+        break;
+      case 401:
+        alert("Invalid credentials: incorrect password");
+        break;
+      case 200:
+        router.push("/home");
+        break;
+    }
+  };
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -34,23 +58,28 @@ const index = () => {
             </Text>
             <View className="gap-4 my-12">
               <TextInputWithLogo
+                id={"email"}
                 logo={<AntDesign name="mail" size={24} color="black" />}
                 placeholder={"example@gmail.com"}
+                data={loginData}
+                setData={setLoginData}
               />
               <TextInputWithLogo
+                id={"password"}
                 secure
                 logo={<AntDesign name="lock1" size={28} color="black" />}
                 placeholder={"Enter your password"}
+                data={loginData}
+                setData={setLoginData}
               />
             </View>
-            <Link
-              href={"/home"}
+            <TouchableOpacity
+              onPress={handleLogin}
               className="bg-brand-purple w-2/3 self-center rounded-full px-6 py-4"
             >
-              <Text className="text-white bg-brand-purplefont-bold text-lg text-center">
-                Sign In
-              </Text>
-            </Link>
+              <Text className="text-white text-lg text-center">Sign in</Text>
+            </TouchableOpacity>
+
             <Link className="self-center mt-6" href={"/forgot-password"}>
               <Text>Forgot password?</Text>
             </Link>
