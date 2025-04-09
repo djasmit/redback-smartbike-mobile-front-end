@@ -1,10 +1,14 @@
-import { Slot } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import React from "react";
 
 const _layout = () => {
   return (
     <>
-      <Slot />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </>
   );
 };
