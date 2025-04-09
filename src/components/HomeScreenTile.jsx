@@ -16,7 +16,9 @@ const HomeScreenTile = ({ tileTitle, icon }) => {
           <Text className="text-white font-bold text-center">{tileTitle}</Text>
           <MaterialIcons name="navigate-next" size={24} color={"#EB7363"} />
         </View>
-        <View className="flex-1 items-center justify-center">{icon}</View>
+        <Text>
+          <View className="flex-1 items-center justify-center">{icon}</View>
+        </Text>
       </View>
     </LinearGradient>
   );

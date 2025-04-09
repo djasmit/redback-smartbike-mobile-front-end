@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import "../../global.css";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import TextInputWithLogo from "@/components/TextInputWithLogo";
-import LoginIcon from "@/components/LoginIcon";
+import LoginIcon from "@/app/LoginIcon";
 import { Link, router, useNavigation } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 

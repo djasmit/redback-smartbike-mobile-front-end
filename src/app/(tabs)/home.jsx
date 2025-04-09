@@ -2,9 +2,7 @@ import { View, SafeAreaView, Text } from "react-native";
 import React from "react";
 import Avatar from "@/components/Avatar";
 import LastWeekActivity from "@/components/LastWeekActivity";
-import Connect from "@/components/Connect";
 import WelcomeMessage from "@/components/WelcomeMessage";
-import StartWorkout from "@/components/StartWorkout";
 import HomeScreenTile from "@/components/HomeScreenTile";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
