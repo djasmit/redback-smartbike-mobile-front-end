@@ -91,7 +91,7 @@ const index = () => {
               <LoginIcon image={require("@assets/google.png")} />
             </View>
             <Text className="text-white text-center">
-              Dont have an account?{" "}
+              Dont have an account?<Text> </Text>
               <Link href={"/signup"}>
                 <Text className="text-brand-purple font-semibold">
                   Sign up here
