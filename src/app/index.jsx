@@ -1,59 +1,108 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  StatusBar,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import "../../global.css";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import TextInputWithLogo from "@/components/TextInputWithLogo";
+import LoginIcon from "@/components/LoginIcon";
+import { Link, router, useNavigation } from "expo-router";
+import "@expo/metro-runtime";
 import { LinearGradient } from "expo-linear-gradient";
 
-const formOptions = [];
+const index = () => {
+  const handleLogin = async () => {
+    const response = await fetch(`http://0.0.0.0:8000/login/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
 
-const Contact = () => {
-  const [focus, setFocus] = useState(false);
-  const [formData, setFormData] = useState({
-    subject: "",
-    email: "",
-    message: "",
-  });
+    switch (response.status) {
+      case 404:
+        alert("Invalid credentials: email doesn't exist");
+        break;
+      case 401:
+        alert("Invalid credentials: incorrect password");
+        break;
+      case 200:
+        router.push("/home");
+        break;
+    }
+  };
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const navigation = useNavigation();
   return (
-    <LinearGradient style={{ flex: 1 }} colors={["#340C4C", "#EB7363"]}>
-      <SafeAreaView className="flex justify-center h-full p-4">
-        <Text className="text-white text-3xl my-8 font-bold text-center">
-          How can we help?
-        </Text>
-        <View className="gap-4 my-4 flex-1 ">
-          <TextInput
-            className="text-white box-border border-[1.5px] rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
-            placeholderTextColor={"gainsboro"}
-            placeholder="Subject"
-            value={formData.subject}
-            onChangeText={(text) => setFormData({ ...formData, subject: text })}
-          />
-          <TextInput
-            className="text-white box-border border-[1.5px] rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
-            placeholderTextColor={"gainsboro"}
-            placeholder="Email"
-            value={formData.email}
-            onChangeText={(text) => setFormData({ ...formData, email: text })}
-            autoCapitalize="none"
-          />
-          <TextInput
-            className="text-white box-border border-[1.5px]  h-1/2  rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
-            placeholderTextColor={"gainsboro"}
-            placeholder="Message"
-            value={formData.message}
-            onChangeText={(text) => setFormData({ ...formData, message: text })}
-            multiline={true}
-            numberOfLines={5}
-            m
-          />
-
-          <View className=" flex-grow items-center justify-center">
-            <TouchableOpacity className="text-white  bg-brand-purple w-full py-4 rounded-xl text-xl">
-              <Text className="text-white text-center">Send</Text>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <LinearGradient style={{ flex: 1 }} colors={["#340C4C", "#EB7363"]}>
+        <StatusBar barStyle={"light-content"} />
+        <SafeAreaView>
+          <View className="bg-white max-h-[78%] py-6 m-6 rounded-[48px] flex justify-center px-4">
+            <Image
+              source={require("@assets/redback-logo.png")}
+              className="max-w-[130px] max-h-[130px] self-center mb-6"
+              resizeMode="contain"
+            />
+            <Text className="text-brand-navy text-center text-3xl font-bold">
+              Redback Smart Bike
+            </Text>
+            <View className="gap-4 my-12">
+              <TextInputWithLogo
+                id={"email"}
+                logo={<AntDesign name="mail" size={24} color="black" />}
+                placeholder={"example@gmail.com"}
+                data={loginData}
+                setData={setLoginData}
+              />
+              <TextInputWithLogo
+                id={"password"}
+                secure
+                logo={<AntDesign name="lock1" size={28} color="black" />}
+                placeholder={"Enter your password"}
+                data={loginData}
+                setData={setLoginData}
+              />
+            </View>
+            <TouchableOpacity
+              onPress={handleLogin}
+              className="bg-brand-purple w-2/3 self-center rounded-full px-6 py-4"
+            >
+              <Text className="text-white text-lg text-center">Sign in</Text>
             </TouchableOpacity>
+
+            <Link className="self-center mt-6" href={"/forgot-password"}>
+              <Text>Forgot password?</Text>
+            </Link>
           </View>
-        </View>
-      </SafeAreaView>
-    </LinearGradient>
+          <View className="flex flex-grow justify-center gap-4">
+            <View className="flex-row justify-between w-1/2 self-center">
+              <LoginIcon image={require("@assets/apple-logo.png")} />
+              <LoginIcon image={require("@assets/facebook.png")} />
+              <LoginIcon image={require("@assets/google.png")} />
+            </View>
+            <Text className="text-white text-center">
+              Dont have an account?<Text> </Text>
+              <Link href={"/signup"}>
+                <Text className="text-brand-purple font-semibold">
+                  Sign up here
+                </Text>
+              </Link>
+            </Text>
+          </View>
+        </SafeAreaView>
+      </LinearGradient>
+    </TouchableWithoutFeedback>
   );
 };
 
-export default Contact;
+export default index;
