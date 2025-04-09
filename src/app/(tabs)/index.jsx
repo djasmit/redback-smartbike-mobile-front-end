@@ -5,8 +5,37 @@ import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import Setting from "@/components/Setting";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-const settingsArray = ["Edit Profile", "Message Center", "My Workout History"];
+const settingsArray = [
+  {
+    title: "Edit Profile",
+    link: "/editProfile",
+    icon: <AntDesign name="user" size={18} color="black" />,
+  },
+
+  {
+    title: "Contact Us",
+    link: "/contact",
+    icon: <AntDesign name="mail" size={18} color="black" />,
+  },
+
+  {
+    title: "My Workout History",
+    link: "/workoutHistory",
+    icon: <AntDesign name="barchart" size={18} color="black" />,
+  },
+  {
+    title: "About Us",
+    link: "/aboutUs",
+    icon: <AntDesign name="infocirlceo" size={18} color="black" />,
+  },
+  {
+    title: "Delete Account",
+    link: "/deleteAccount",
+    icon: <AntDesign name="deleteuser" size={18} color="black" />,
+  },
+];
 
 const settings = () => {
   return (
@@ -23,7 +52,13 @@ const settings = () => {
         <FlatList
           data={settingsArray}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <Setting settingTitle={item} />}
+          renderItem={({ item }) => (
+            <Setting
+              settingTitle={item.title}
+              link={item.link}
+              icon={item.icon}
+            />
+          )}
         />
       </View>
     </View>
