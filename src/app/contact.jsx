@@ -2,13 +2,14 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
+import DropDown from "@/components/DropDown";
 
 const formOptions = [];
 
 const Contact = () => {
-  const [focus, setFocus] = useState(false);
   const [formData, setFormData] = useState({
     subject: "",
+    category: "Select...",
     email: "",
     message: "",
   });
@@ -26,6 +27,11 @@ const Contact = () => {
             value={formData.subject}
             onChangeText={(text) => setFormData({ ...formData, subject: text })}
           />
+          <DropDown
+            formData={formData}
+            setFormData={setFormData}
+            category={formData.category}
+          ></DropDown>
           <TextInput
             className="text-white box-border border-[1.5px] rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
             placeholderTextColor={"gainsboro"}

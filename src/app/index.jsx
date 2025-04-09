@@ -19,26 +19,30 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const index = () => {
   const handleLogin = async () => {
-    const response = await fetch(`http://0.0.0.0:8000/login/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
+    //production code
+    // const response = await fetch(`http://0.0.0.0:8000/login/`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginData),
+    // });
 
-    switch (response.status) {
-      case 404:
-        alert("Invalid credentials: email doesn't exist");
-        break;
-      case 401:
-        alert("Invalid credentials: incorrect password");
-        break;
-      case 200:
-        router.push("/home");
-        break;
-    }
+    // switch (response.status) {
+    //   case 404:
+    //     alert("Invalid credentials: email doesn't exist");
+    //     break;
+    //   case 401:
+    //     alert("Invalid credentials: incorrect password");
+    //     break;
+    //   case 200:
+    //     router.push("/home");
+    //     break;
+    // }
+
+    //dev code
+    router.push("/home");
   };
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigation = useNavigation();
