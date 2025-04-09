@@ -12,11 +12,12 @@ const TextInputWithLogo = ({
   const [focus, setFocus] = useState(false);
   return (
     <View
-      className={`flex flex-row items-center gap-4 px-6 py-4 rounded-full ${
-        focus ? "border border-brand-navy" : null
+      className={`flex flex-row relative items-center transition-all duration-500 border gap-4 px-6 py-4 rounded-full ${
+        focus ? "border-brand-purple" : "border-gray-400"
       }`}
     >
       {logo}
+
       <TextInput
         autoCapitalize="none"
         onChangeText={(text) => setData({ ...data, [id]: text })}

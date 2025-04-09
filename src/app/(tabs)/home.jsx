@@ -13,25 +13,25 @@ const Home = () => {
     <SafeAreaView className="flex-1 bg-black">
       <View className="p-4">
         <View className="flex-row justify-between items-center my-6">
-          <WelcomeMessage name="Jordan Anderson" />
+          <WelcomeMessage name={"Jordan Anderson"} />
           <Avatar size={50} />
         </View>
         <View className="gap-4">
           <LastWeekActivity />
           <View className="flex gap-4 justify-between flex-row">
             <View className="flex-1">
-              <HomeScreenTile tileTitle="Connect" />
+              <HomeScreenTile tileTitle={"Connect"} />
             </View>
             <View className="flex-1">
               <HomeScreenTile
                 icon={
                   <MaterialCommunityIcons
-                    name="bike"
+                    name={"bike"}
                     size={52}
                     color="#EB7363"
                   />
                 }
-                tileTitle="Start workout"
+                tileTitle={"Start workout"}
               />
             </View>
           </View>
