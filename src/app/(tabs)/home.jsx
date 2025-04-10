@@ -14,8 +14,9 @@ const Home = () => {
           <WelcomeMessage name={"Jordan Anderson"} />
           <Avatar size={50} />
         </View>
+        <LastWeekActivity />
+
         <View className="gap-4">
-          <LastWeekActivity />
           <View className="flex gap-4 justify-between flex-row">
             <View className="flex-1">
               <HomeScreenTile tileTitle={"Connect"} />
