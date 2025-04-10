@@ -1,7 +1,31 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "@/context/authContext";
 
 const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
+  const { user } = useContext(AuthContext);
+
+  const handleDeleteUser = async () => {
+    const response = await fetch(
+      `http://0.0.0.0:8000/user/delete/${user.id}/`,
+      {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    switch (response.status) {
+      case 404:
+        alert("User not found");
+        return;
+      case 204:
+        setDeleteSuccessful(true);
+        break;
+    }
+  };
   return (
     <View className="gap-4 p-4">
       <View className="w-[70px] bg-red-500 self-center rounded-full">
@@ -25,7 +49,7 @@ const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
 
         {/* CONFIRM BUTTON */}
         <TouchableOpacity
-          onPress={() => setDeleteSuccessful(true)}
+          onPress={handleDeleteUser}
           className="flex-1 rounded-full bg-brand-purple p-4"
         >
           <Text className="text-center text-white font-semibold">

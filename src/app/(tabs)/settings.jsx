@@ -1,11 +1,12 @@
 import { View, Text, FlatList } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import Setting from "@/components/Setting";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { AuthContext } from "@/context/authContext";
 
 const settingsArray = [
   {
@@ -38,12 +39,16 @@ const settingsArray = [
 ];
 
 const settings = () => {
+  const { user } = useContext(AuthContext);
   return (
     <View className="flex-1 ">
       <LinearGradient colors={["#994D74", "#3A1C72"]}>
         <SafeAreaView className="h-[350px] flex justify-center items-center">
           <Avatar size={100} />
           <Text className="font-bold text-lg text-white">Jordan Anderson</Text>
+          <Text>The user id is {user.id}</Text>
+          <Text>The username is {user.username}</Text>
+          <Text>The email is {user.email} </Text>
         </SafeAreaView>
       </LinearGradient>
       <View className="h-full relative -top-14 rounded-[48px] bg-white py-8 px-6">

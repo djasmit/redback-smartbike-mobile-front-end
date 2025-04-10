@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 // Auth Provider component
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // User state will store logged-in user info
+  const [user, setUser] = useState({ username: "", email: "", id: "" }); // User state will store logged-in user info
 
   // Mocked logout function
   const logout = () => {
