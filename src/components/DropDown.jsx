@@ -1,39 +1,53 @@
-import { View, Text, TouchableOpacity, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Modal, Keyboard } from "react-native";
 import React, { useState } from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 
-const categories = ["General Equiry", "Technical Support", "Billing", "Other"];
-
-const DropDown = ({ category, formData, setFormData }) => {
+const DropDown = ({ category, options, selectedOption, handlePress }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handlePress = (category) => {
-    setFormData({ ...formData, category: category });
-    setMenuOpen(!menuOpen);
-  };
   return (
     <TouchableOpacity
-      onPress={() => setMenuOpen(!menuOpen)}
-      className="border-[1.5px] border-white  rounded-xl"
+      onBlur={() => setMenuOpen(false)}
+      onPress={() => {
+        setMenuOpen(!menuOpen);
+        Keyboard.dismiss();
+      }}
+      className={`border-[1.5px]  relative rounded-xl ${
+        menuOpen ? "border-brand-purple" : "border-gray-200"
+      }`}
     >
       <View className="flex-row items-center justify-between">
-        <Text className="text-gray-200 p-6">{category}</Text>
+        <Text
+          className={`p-4 ${
+            selectedOption == "Select..." ? "text-gray-500" : "text-black"
+          }`}
+          p-6
+        >
+          {selectedOption}
+        </Text>
         <Entypo
           name="chevron-right"
           size={18}
-          color="white"
+          color="gray"
           className={`${menuOpen ? "rotate-90" : "rotate-0"} mr-6`}
         />
       </View>
-      <View className="">
+      <View
+        className={`absolute  bottom-0 w-full  bg-white rounded-xl overflow-hidden flex translate-y-full ${
+          menuOpen && "border-[1.5px] border-brand-purple"
+        }`}
+      >
         {menuOpen &&
-          categories.map((category) => (
+          options.map((option) => (
             <TouchableOpacity
-              className="border-t flex justify-center border-white"
-              key={category}
-              onPress={() => handlePress(category)}
+              className=" flex justify-center"
+              key={option}
+              onPress={() => {
+                handlePress(option);
+                setMenuOpen(!menuOpen);
+              }}
             >
-              <Text className="text-white p-6">{category}</Text>
+              <Text className="text-black  p-6">{option}</Text>
             </TouchableOpacity>
           ))}
       </View>
