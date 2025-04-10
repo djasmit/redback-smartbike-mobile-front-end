@@ -26,36 +26,40 @@ const SignUp = () => {
     password: "",
   });
   const handleSignup = async () => {
-    if (!userData.username || !userData.email || !userData.password) {
-      alert("Please complete all fields");
-      return;
-    }
-    const response = await fetch(`http://0.0.0.0:8000/signup/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
+    //PRODUCTION CODE
+    // if (!userData.username || !userData.email || !userData.password) {
+    //   alert("Please complete all fields");
+    //   return;
+    // }
+    // const response = await fetch(`http://0.0.0.0:8000/signup/`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(userData),
+    // });
 
-    switch (response.status) {
-      case 409:
-        alert("This email or username already exists");
-        break;
-      case 400:
-        alert("An error occured");
-        break;
-      case 201:
-        const data = await response.json();
-        setUser({
-          id: data.id,
-          username: data.username,
-          email: data.email,
-        });
-        router.push("/home");
-        break;
-    }
+    // switch (response.status) {
+    //   case 409:
+    //     alert("This email or username already exists");
+    //     break;
+    //   case 400:
+    //     alert("An error occured");
+    //     break;
+    //   case 201:
+    //     const data = await response.json();
+    //     setUser({
+    //       id: data.id,
+    //       username: data.username,
+    //       email: data.email,
+    //     });
+    //     router.push("/home");
+    //     break;
+    // }
+
+    //DEV CODE
+    router.push("/home");
   };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

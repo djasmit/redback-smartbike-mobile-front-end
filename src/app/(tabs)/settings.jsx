@@ -46,9 +46,6 @@ const settings = () => {
         <SafeAreaView className="h-[350px] flex justify-center items-center">
           <Avatar size={100} />
           <Text className="font-bold text-lg text-white">Jordan Anderson</Text>
-          <Text>The user id is {user.id}</Text>
-          <Text>The username is {user.username}</Text>
-          <Text>The email is {user.email} </Text>
         </SafeAreaView>
       </LinearGradient>
       <View className="h-full relative -top-14 rounded-[48px] bg-white py-8 px-6">

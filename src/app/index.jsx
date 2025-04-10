@@ -23,33 +23,33 @@ const index = () => {
 
   const handleLogin = async () => {
     // production code
-    const response = await fetch(`http://0.0.0.0:8000/login/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
-    switch (response.status) {
-      case 404:
-        alert("Invalid credentials: email doesn't exist");
-        break;
-      case 401:
-        alert("Invalid credentials: incorrect password");
-        break;
-      case 200:
-        const data = await response.json();
-        setUser({
-          id: data.id,
-          username: data.account_details[0].username,
-          email: data.account_details[0].email,
-        });
-        router.push("/home");
-        break;
-    }
+    // const response = await fetch(`http://0.0.0.0:8000/login/`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginData),
+    // });
+    // switch (response.status) {
+    //   case 404:
+    //     alert("Invalid credentials: email doesn't exist");
+    //     break;
+    //   case 401:
+    //     alert("Invalid credentials: incorrect password");
+    //     break;
+    //   case 200:
+    //     const data = await response.json();
+    //     setUser({
+    //       id: data.id,
+    //       username: data.account_details[0].username,
+    //       email: data.account_details[0].email,
+    //     });
+    //     router.push("/home");
+    //     break;
+    // }
     // dev code
-    // router.push("/home");
+    router.push("/home");
   };
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigation = useNavigation();

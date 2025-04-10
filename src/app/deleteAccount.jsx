@@ -71,7 +71,7 @@ const deleteAccount = () => {
               selectedOption={formData.reason}
             />
           </View>
-          <View className="gap-2">
+          <View className="gap-2 -z-10">
             <Text className="font-semibold">
               Please provide further details:
             </Text>
@@ -82,7 +82,7 @@ const deleteAccount = () => {
               className="text-black h-36  box-border border-[1.5px] rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
             />
           </View>
-          <View className="gap-2">
+          <View className="gap-2 -z-10">
             <Text className="font-semibold text-black">
               We're sorry to see you go. Please note:
             </Text>
@@ -98,7 +98,7 @@ const deleteAccount = () => {
             />
           </View>
         </View>
-        <View className="p-4 mt-auto">
+        <View className="p-4 -z-10 mt-auto">
           <TouchableOpacity
             onPress={() => setConfirmDeletion(true)}
             className="bg-red-500  rounded-full p-4"

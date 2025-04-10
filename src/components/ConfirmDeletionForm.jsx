@@ -6,25 +6,29 @@ const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
   const { user } = useContext(AuthContext);
 
   const handleDeleteUser = async () => {
-    const response = await fetch(
-      `http://0.0.0.0:8000/user/delete/${user.id}/`,
-      {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    //PRODUCTION CODE
+    // const response = await fetch(
+    //   `http://0.0.0.0:8000/user/delete/${user.id}/`,
+    //   {
+    //     method: "DELETE",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
 
-    switch (response.status) {
-      case 404:
-        alert("User not found");
-        return;
-      case 204:
-        setDeleteSuccessful(true);
-        break;
-    }
+    // switch (response.status) {
+    //   case 404:
+    //     alert("User not found");
+    //     return;
+    //   case 204:
+    //     setDeleteSuccessful(true);
+    //     break;
+    // }
+
+    //DEV CODE
+    setDeleteSuccessful(true);
   };
   return (
     <View className="gap-4 p-4">

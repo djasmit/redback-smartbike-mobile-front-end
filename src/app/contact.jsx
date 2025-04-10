@@ -47,7 +47,7 @@ const Contact = () => {
             handlePress={handleCategorySelect}
           ></DropDown>
           <TextInput
-            className="text-black bg-white box-border border-[1.5px] rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
+            className="text-black -z-10 bg-white box-border border-[1.5px] rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
             placeholderTextColor={"gray"}
             placeholder="Email"
             value={formData.email}
@@ -55,7 +55,7 @@ const Contact = () => {
             autoCapitalize="none"
           />
           <TextInput
-            className="text-black bg-white  box-border border-[1.5px] h-1/2  rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
+            className="text-black bg-white -z-10 box-border border-[1.5px] h-1/2  rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
             placeholderTextColor={"gray"}
             placeholder="Message"
             value={formData.message}
