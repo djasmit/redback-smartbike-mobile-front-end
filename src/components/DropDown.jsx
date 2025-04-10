@@ -12,12 +12,14 @@ const DropDown = ({ category, options, selectedOption, handlePress }) => {
         setMenuOpen(!menuOpen);
         Keyboard.dismiss();
       }}
-      className="border-[1.5px] bg-white border-gray-200  focus:border-brand-purple  z-50 relative rounded-xl"
+      className={`border-[1.5px]  relative rounded-xl ${
+        menuOpen ? "border-brand-purple" : "border-gray-200"
+      }`}
     >
       <View className="flex-row items-center justify-between">
         <Text
           className={`p-4 ${
-            selectedOption == "Select..." ? "text-gray-200" : "text-black"
+            selectedOption == "Select..." ? "text-gray-500" : "text-black"
           }`}
           p-6
         >
@@ -26,26 +28,26 @@ const DropDown = ({ category, options, selectedOption, handlePress }) => {
         <Entypo
           name="chevron-right"
           size={18}
-          color="white"
+          color="gray"
           className={`${menuOpen ? "rotate-90" : "rotate-0"} mr-6`}
         />
       </View>
       <View
-        className={`absolute  bottom-0 w-full z-50 bg-white rounded-xl overflow-hidden flex translate-y-full ${
+        className={`absolute  bottom-0 w-full  bg-white rounded-xl overflow-hidden flex translate-y-full ${
           menuOpen && "border-[1.5px] border-brand-purple"
         }`}
       >
         {menuOpen &&
           options.map((option) => (
             <TouchableOpacity
-              className="bg-white  flex justify-center"
+              className=" flex justify-center"
               key={option}
               onPress={() => {
                 handlePress(option);
                 setMenuOpen(!menuOpen);
               }}
             >
-              <Text className="text-black z-50 p-6">{option}</Text>
+              <Text className="text-black  p-6">{option}</Text>
             </TouchableOpacity>
           ))}
       </View>

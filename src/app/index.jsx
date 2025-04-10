@@ -18,6 +18,8 @@ import "@expo/metro-runtime";
 import { LinearGradient } from "expo-linear-gradient";
 
 const index = () => {
+  const { setUser } = useContext(AuthContext);
+
   const handleLogin = async () => {
     //production code
     // const response = await fetch(`http://0.0.0.0:8000/login/`, {
@@ -37,6 +39,7 @@ const index = () => {
     //     alert("Invalid credentials: incorrect password");
     //     break;
     //   case 200:
+    console.log(response);
     //     router.push("/home");
     //     break;
     // }
