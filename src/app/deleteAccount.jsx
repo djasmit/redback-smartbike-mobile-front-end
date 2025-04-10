@@ -9,12 +9,13 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import DropDown from "@/components/DropDown";
 import { router } from "expo-router";
 import ConfirmDeletionModal from "@/components/ConfirmDeletionModal";
+import { AuthContext } from "@/context/authContext";
 const options = [
   "Poor service",
   "I've found a better alternative",
@@ -35,6 +36,7 @@ const bulletPoints = [
 ];
 
 const deleteAccount = () => {
+  const { user } = useContext(AuthContext);
   //sets the reasonEnum to the ENUM value expected by backend
   const handleDeleteReason = (option) => {
     const index = options.indexOf(option);

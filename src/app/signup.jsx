@@ -9,15 +9,17 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../global.css";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import TextInputWithLogo from "@/components/TextInputWithLogo";
 import LoginIcon from "@/app/LoginIcon";
 import { Link, router, useNavigation } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { AuthContext } from "@/context/authContext";
 
 const SignUp = () => {
+  const { setUser } = useContext(AuthContext);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -45,7 +47,12 @@ const SignUp = () => {
         alert("An error occured");
         break;
       case 201:
-        alert("The user was created");
+        const data = await response.json();
+        setUser({
+          id: data.id,
+          username: data.username,
+          email: data.email,
+        });
         router.push("/home");
         break;
     }
