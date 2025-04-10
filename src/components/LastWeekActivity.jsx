@@ -1,6 +1,7 @@
-import { View, Text, ScrollView } from "react-native";
-import React, { useRef, useState } from "react";
-import { BarChart, yAxisSides } from "react-native-gifted-charts";
+import { View, Text, ScrollView, Dimensions } from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+// import { BarChart, yAxisSides } from "react-native-gifted-charts";
+import { BarChart, LineChart, StackedBarChart } from "react-native-chart-kit";
 
 const LastWeekActivity = () => {
   const [chartWidth, setChartWidth] = useState(0);
@@ -8,81 +9,50 @@ const LastWeekActivity = () => {
 
   const handleLayout = (e) => {
     const { width, height } = e.nativeEvent.layout;
-    setChartWidth(width * 0.85);
-    setChartHeight(height * 0.7);
+    setChartWidth(width);
+    setChartHeight(height);
   };
 
-  const data = [
-    {
-      value: 15,
-      label: "Mon",
-      frontColor: "#EB7363",
-      gradientColour: "#ffffff",
-    },
-    {
-      value: 9,
-      label: "Tue",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-    {
-      value: 5,
-      label: "Wed",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-    {
-      value: 12,
-      label: "Thu",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-    {
-      value: 8,
-      label: "Fri",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-    {
-      value: 24,
-      label: "Sat",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-    {
-      value: 50,
-      label: "Sun",
-      frontColor: "#EB7363",
-      gradientColour: "#EB736350",
-    },
-  ];
+  const chartConfig = {
+    backgroundColor: "#EB7363",
+    color: (opacity = 1) => `gray`,
+    strokeWidth: 2,
+    barPercentage: 0.5,
+    useShadowColorFromDataset: true,
+  };
+
+  const data = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    datasets: [
+      {
+        data: [20, 45, 28, 80, 99, 43, 20],
+        color: (opacity = 1) => `#EB7363`,
+      },
+    ],
+  };
 
   return (
-    <View
-      onLayout={handleLayout}
-      className="h-[200px] p-4 bg-white rounded-3xl overflow-hidden flex items-center justify-center  w-full"
-    >
-      {chartHeight > 0 && chartWidth > 0 && (
-        <BarChart
-          isAnimated
-          animationDuration={300}
-          hideRules
-          height={chartHeight}
-          width={chartWidth}
-          data={data}
-          spacing={25}
-          initialSpacing={10}
-          endSpacing={5}
-          yAxisSide={yAxisSides.RIGHT}
-          yAxisThickness={0}
-          xAxisThickness={2}
-          barWidth={20}
-          thickness={1}
-          barBorderRadius={3}
-          adjustToWidth={true}
-          noOfSections={5}
-        />
-      )}
+    <View onLayout={handleLayout} className={` overflow-hidden`}>
+      <LineChart
+        bezier
+        withShadow
+        withDots={false}
+        fromZero
+        data={data}
+        width={chartWidth}
+        height={200}
+        chartConfig={chartConfig}
+        withHorizontalLabels
+        flatColor={true}
+        withCustomBarColorFromData
+        withInnerLines
+        style={{
+          borderRadius: 16,
+          padding: 0,
+          marginVertical: 10,
+          marginHorizontal: 0,
+        }}
+      />
     </View>
   );
 };
