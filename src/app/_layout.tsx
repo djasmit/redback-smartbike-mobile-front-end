@@ -14,6 +14,14 @@ const _layout = () => {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="signup" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="deleteAccount"
+          options={{
+            headerShown: true,
+            headerTitle: "Delete Account",
+            headerTintColor: "black",
+          }}
+        />
       </Stack>
     </>
   );

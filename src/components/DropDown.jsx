@@ -2,22 +2,16 @@ import { View, Text, TouchableOpacity, Modal } from "react-native";
 import React, { useState } from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 
-const categories = ["General Equiry", "Technical Support", "Billing", "Other"];
-
-const DropDown = ({ category, formData, setFormData }) => {
+const DropDown = ({ category, options, selectedOption, handlePress }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handlePress = (category) => {
-    setFormData({ ...formData, category: category });
-    setMenuOpen(!menuOpen);
-  };
   return (
     <TouchableOpacity
       onPress={() => setMenuOpen(!menuOpen)}
-      className="border-[1.5px] border-white  rounded-xl"
+      className="border-[1.5px] border-white z-50 relative rounded-xl"
     >
       <View className="flex-row items-center justify-between">
-        <Text className="text-gray-200 p-6">{category}</Text>
+        <Text className="text-gray-200 p-6">{selectedOption}</Text>
         <Entypo
           name="chevron-right"
           size={18}
@@ -25,15 +19,18 @@ const DropDown = ({ category, formData, setFormData }) => {
           className={`${menuOpen ? "rotate-90" : "rotate-0"} mr-6`}
         />
       </View>
-      <View className="">
+      <View className="absolute bottom-0 w-full z-50 bg-white rounded-xl overflow-hidden flex translate-y-full ">
         {menuOpen &&
-          categories.map((category) => (
+          options.map((option) => (
             <TouchableOpacity
-              className="border-t flex justify-center border-white"
-              key={category}
-              onPress={() => handlePress(category)}
+              className="bg-white flex justify-center"
+              key={option}
+              onPress={() => {
+                handlePress(option);
+                setMenuOpen(!menuOpen);
+              }}
             >
-              <Text className="text-white p-6">{category}</Text>
+              <Text className="text-black z-50 p-6">{option}</Text>
             </TouchableOpacity>
           ))}
       </View>

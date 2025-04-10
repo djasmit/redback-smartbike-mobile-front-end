@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import DropDown from "@/components/DropDown";
 
-const formOptions = [];
+const options = ["General Equiry", "Technical Support", "Billing", "Other"];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,10 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  const handleCategorySelect = (option) => {
+    setFormData({ ...formData, category: option });
+  };
   return (
     <LinearGradient style={{ flex: 1 }} colors={["#340C4C", "#EB7363"]}>
       <SafeAreaView className="flex justify-center h-full p-4">
@@ -28,9 +32,12 @@ const Contact = () => {
             onChangeText={(text) => setFormData({ ...formData, subject: text })}
           />
           <DropDown
-            formData={formData}
-            setFormData={setFormData}
+            data={formData}
+            setData={setFormData}
             category={formData.category}
+            options={options}
+            selectedOption={formData.category}
+            handlePress={handleCategorySelect}
           ></DropDown>
           <TextInput
             className="text-white box-border border-[1.5px] rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
@@ -41,14 +48,13 @@ const Contact = () => {
             autoCapitalize="none"
           />
           <TextInput
-            className="text-white box-border border-[1.5px]  h-1/2  rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
+            className="text-white box-border border-[1.5px] h-1/2  rounded-xl p-6 flex items-center justify-center border-gray-200 focus:border-brand-purple"
             placeholderTextColor={"gainsboro"}
             placeholder="Message"
             value={formData.message}
             onChangeText={(text) => setFormData({ ...formData, message: text })}
             multiline={true}
             numberOfLines={5}
-            m
           />
 
           <View className=" flex-grow items-center justify-center">
