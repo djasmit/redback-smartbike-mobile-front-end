@@ -54,12 +54,12 @@ const SignUp = () => {
     //       username: data.username,
     //       email: data.email,
     //     });
-    //     router.push("/home");
+    //     router.replace("/home");
     //     break;
     // }
 
     //DEV CODE
-    router.push("/home");
+    router.replace("/home");
   };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

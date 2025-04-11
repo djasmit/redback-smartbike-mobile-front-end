@@ -17,10 +17,11 @@ import { Link, router, useNavigation } from "expo-router";
 import "@expo/metro-runtime";
 import { LinearGradient } from "expo-linear-gradient";
 import { AuthContext } from "@/context/authContext";
+import PopUp from "@/components/PopUp";
 
 const index = () => {
   const { setUser } = useContext(AuthContext);
-
+  const [pop, setPop] = useState(false);
   const handleLogin = async () => {
     // production code
     // const response = await fetch(`http://0.0.0.0:8000/login/`, {
@@ -45,11 +46,11 @@ const index = () => {
     //       username: data.account_details[0].username,
     //       email: data.account_details[0].email,
     //     });
-    //     router.push("/home");
+    //     router.replace("/home");
     //     break;
     // }
     // dev code
-    router.push("/home");
+    router.replace("/home");
   };
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const navigation = useNavigation();
