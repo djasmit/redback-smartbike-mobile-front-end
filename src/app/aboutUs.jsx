@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,89 +15,96 @@ import { router } from "expo-router";
 
 const links = [
   {
-    title: "Catch up on latest news",
+    title: "See our news",
     link: "",
-    bgcolours: ["#DC5432", "#DC543290"],
+    bgcolours: ["#55C0FF", "#04A1FE"],
     icon: <FontAwesome name="newspaper-o" size={30} color="white" />,
   },
   {
-    title: "See our privacy policy",
+    title: "Our privacy policy",
     link: "",
-    bgcolours: ["#E24F97", "#E24F9790"],
+    bgcolours: ["#73FCE9", "#18E5CF"],
     icon: <MaterialIcons name="privacy-tip" size={30} color="white" />,
   },
   {
     title: "Get in touch",
     link: "/contact",
-    bgcolours: ["#CE062B", "#CE062B90"],
+    bgcolours: ["#88FA4D", "#61D837"],
     icon: <Entypo name="mail" size={30} color="white" />,
   },
   {
-    title: "Check out our website",
+    title: "Our website",
     link: "",
-    bgcolours: ["#22BAA2", "#22BAA290"],
+    bgcolours: ["#FE968C", "#FE644E"],
     icon: <MaterialIcons name="computer" size={30} color="white" />,
   },
 ];
 
 const aboutUs = () => {
-  const [width, setWidth] = useState();
-  const handleLayout = (e) => {
-    const window = e.nativeEvent.layout.width;
-    setWidth(window * 0.45);
-  };
-
-  const containerRef = useRef(null);
   return (
-    <SafeAreaView>
-      <View className="p-4  gap-4">
-        <Text className="text-2xl mb-12 text-center font-bold text-brand-purple">
-          Redback Operations
-        </Text>
-        <Text className="text-center">
-          Redback operations aims to turn small steps of virtuality into bigger
-          steps of reality, making you smarter, fitter, and better.
-        </Text>
-        <Text className="text-center">
-          Bad weather? Traffic? Worry not, our smart bike project transforms
-          your indoor cycling experience but also features an interactive
-          virtual reality game and accessible mobile application to bring the
-          world to you.
-        </Text>
-      </View>
-      <View onLayout={handleLayout} className="flex my-12 items-center">
-        {width && (
-          <FlatList
-            numColumns={2}
-            data={links}
-            renderItem={({ item }) => (
-              <LinearGradient
-                start={[1, 0]} // Start from the left
-                end={[0, 0]} // End on the right
-                colors={item.bgcolours}
-                style={{
-                  width: width,
-                  margin: 4,
-                  borderRadius: 12,
-                  aspectRatio: "16 / 9",
-                }}
-              >
-                <TouchableOpacity
-                  onPress={() => {
-                    item.link && router.push(item.link);
-                  }}
-                  className="flex-grow p-2"
-                >
-                  <View>{item.icon}</View>
-                  <Text className="text-white mt-auto text-lg font-semibold">
-                    {item.title}
-                  </Text>
-                </TouchableOpacity>
-              </LinearGradient>
-            )}
-          />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+      }}
+    >
+      <FlatList
+        ListHeaderComponent={
+          <View className="p-4  gap-4">
+            <Image
+              source={require("@assets/redback-logo.png")}
+              className="w-[130px] h-[130px] self-center"
+              resizeMode="contain"
+            />
+
+            <Image />
+
+            <View className="my-6 gap-2 ">
+              <Text className="text-center leading-6">
+                Redback operations aims to turn small steps of virtuality into
+                bigger steps of reality, making you smarter, fitter, and better.
+              </Text>
+              <Text className="text-center leading-6">
+                Bad weather? Traffic? Worry not, our smart bike project
+                transforms your indoor cycling experience but also features an
+                interactive virtual reality game and accessible mobile
+                application to bring the world to you.
+              </Text>
+            </View>
+          </View>
+        }
+        numColumns={2}
+        columnWrapperStyle={{ gap: 10 }}
+        contentContainerStyle={{ padding: 10, gap: 10 }}
+        data={links}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={{
+              backgroundColor: "gray",
+              borderRadius: 20,
+            }}
+            onPress={() => {
+              item.link && router.push(item.link);
+            }}
+            className=" flex-1 overflow-hidden aspect-video items-between"
+          >
+            <LinearGradient
+              start={[0, 0]}
+              end={[1, 0]}
+              colors={item.bgcolours}
+              style={{
+                flex: 1,
+                padding: 16,
+              }}
+            >
+              <View>{item.icon}</View>
+              <Text className="text-white mt-auto text-lg font-semibold">
+                {item.title}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         )}
-      </View>
+      />
     </SafeAreaView>
   );
 };
