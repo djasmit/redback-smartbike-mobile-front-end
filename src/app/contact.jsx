@@ -33,7 +33,6 @@ const Contact = () => {
         <Text className="text-brand-purple text-3xl my-8 font-bold text-center">
           How can we help?
         </Text>
-        <Text>HELLO WORLD</Text>
 
         <View className="gap-4 my-4 flex-1 ">
           <TextInput
