@@ -6,14 +6,12 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   FlatList,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import DropDown from "@/components/DropDown";
-import { router } from "expo-router";
 import ConfirmDeletionModal from "@/components/ConfirmDeletionModal";
 import { AuthContext } from "@/context/authContext";
 import PopUp from "@/components/PopUp";
@@ -54,7 +52,7 @@ const deleteAccount = () => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView className={`h-full bg-white "}`}>
+      <SafeAreaView className={`h-full bg-white `}>
         <View className="my-2  self-center  relative">
           <Avatar size={100} />
           <View className="bg-red-500 p-2 absolute right-1 bottom-1 w-10 h-10 flex items-center justify-center square rounded-full">

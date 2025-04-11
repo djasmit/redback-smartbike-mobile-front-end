@@ -4,7 +4,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 
 //TODO change how dropdown render fade in opacity instead of
 
-const DropDown = ({ category, options, selectedOption, handlePress }) => {
+const DropDown = ({ options, selectedOption, handlePress }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
