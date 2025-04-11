@@ -3,7 +3,9 @@ import React from "react";
 
 const PopUp = ({ children, open }) => {
   return (
-    <View className="h-screen absolute top-0 w-screen">
+    <View
+      className={`h-screen absolute top-0 w-screen ${open ? "z-40" : "-z-50"}`}
+    >
       <View
         className={`h-screen w-full absolute top-0  transition-all duration-500 bg-black/50 ${
           open ? "opacity-100" : "opacity-0"
