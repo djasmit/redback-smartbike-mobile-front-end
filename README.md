@@ -72,4 +72,32 @@ This project uses tailwind for styling. Tailwind documentation can be found at :
 
 Where tailwind classes are unavailable such as non React Native components, inline styles should be used to maintain readability 
 
+# Expo Router
+
+The project makes use of expo router for navigation. The documentation can be found at : https://docs.expo.dev/router/advanced/stack/
+
+Primarily stack navigation is used in the project with the exception of tabs for the main tab views. 
+
+Expo router uses file-based navigation. For example to navigate to a view with the file name "home.jsx"
+
+```bash
+   router.push("/home")
+```
+This will add the home screen to the top of the stack and allow for users to navigate backwards.
+
+Alternatively the Link tag can also be used
+```bash
+   <Link href={"/home}>
+      <Text>Go to home page</Home>
+   </Link>
+```
+
+##  To navigate and clear the stack:
+
+```bash
+   router.replace("/home")
+```
+
+This will navigate to the home screen and clear the stack.
+
 
