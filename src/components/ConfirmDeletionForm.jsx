@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 import { AuthContext } from "@/context/authContext";
 
-const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
+const ConfirmDeletionForm = ({ setConfirmDeletion, setDeleteSuccessful }) => {
   const { user } = useContext(AuthContext);
 
   const handleDeleteUser = async () => {
@@ -30,6 +30,7 @@ const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
     //DEV CODE
     setDeleteSuccessful(true);
   };
+
   return (
     <View className="gap-4 p-4">
       <View className="w-[70px] bg-red-500 self-center rounded-full">
@@ -45,12 +46,11 @@ const ConfirmDeletionForm = ({ setOpen, setDeleteSuccessful }) => {
       <View className="flex-row gap-4">
         {/* BACK BUTTON */}
         <TouchableOpacity
-          onPress={() => setOpen(false)}
+          onPress={() => setConfirmDeletion(false)}
           className="flex-1 rounded-full border border-gray-200 p-4"
         >
           <Text className="text-center font-semibold">Back</Text>
         </TouchableOpacity>
-
         {/* CONFIRM BUTTON */}
         <TouchableOpacity
           onPress={handleDeleteUser}

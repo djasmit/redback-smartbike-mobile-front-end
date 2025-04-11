@@ -16,6 +16,7 @@ import DropDown from "@/components/DropDown";
 import { router } from "expo-router";
 import ConfirmDeletionModal from "@/components/ConfirmDeletionModal";
 import { AuthContext } from "@/context/authContext";
+import PopUp from "@/components/PopUp";
 const options = [
   "Poor service",
   "I've found a better alternative",
@@ -109,16 +110,11 @@ const deleteAccount = () => {
           </TouchableOpacity>
         </View>
 
-        <ConfirmDeletionModal
-          open={confirmDeletion}
-          setOpen={setConfirmDeletion}
-        />
-
-        <View
-          className={`w-full transition-all duration-500 absolute bg-black/50 h-screen top-0 z-40 rounded-t-xl ${
-            confirmDeletion ? "opacity-100" : "opacity-0"
-          }`}
-        />
+        <PopUp open={confirmDeletion} setOpen={setConfirmDeletion}>
+          <ConfirmDeletionModal
+            setConfirmDeletion={setConfirmDeletion}
+          ></ConfirmDeletionModal>
+        </PopUp>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

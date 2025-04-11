@@ -25,7 +25,11 @@ const Contact = () => {
     setFormData({ ...formData, category: option });
   };
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
       <SafeAreaView className="flex bg-white justify-center h-full p-4">
         <Text className="text-brand-purple text-3xl my-8 font-bold text-center">
           How can we help?
