@@ -53,7 +53,7 @@ const deleteAccount = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView className={`h-full bg-white `}>
-        <View className="my-2  self-center  relative">
+        <View className="my-6  self-center  relative">
           <Avatar size={100} />
           <View className="bg-red-500 p-2 absolute right-1 bottom-1 w-10 h-10 flex items-center justify-center square rounded-full">
             <AntDesign name="exclamationcircle" size={14} color="white" />
@@ -76,6 +76,7 @@ const deleteAccount = () => {
             </Text>
             <TextInput
               multiline={true}
+              style={{ textAlignVertical: "top" }}
               numberOfLines={5}
               placeholder="Comments..."
               className="text-black h-36  box-border border-[1.5px] rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"

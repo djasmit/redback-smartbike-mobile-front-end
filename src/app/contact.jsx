@@ -33,6 +33,8 @@ const Contact = () => {
         <Text className="text-brand-purple text-3xl my-8 font-bold text-center">
           How can we help?
         </Text>
+        <Text>HELLO WORLD</Text>
+
         <View className="gap-4 my-4 flex-1 ">
           <TextInput
             className="text-black bg-white box-border border-[1.5px] rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
@@ -58,13 +60,13 @@ const Contact = () => {
             autoCapitalize="none"
           />
           <TextInput
-            className="text-black bg-white -z-10 box-border border-[1.5px] h-1/2  rounded-xl p-4 flex items-center justify-center border-gray-200 focus:border-brand-purple"
+            className="text-black bg-white -z-10 box-border border-[1.5px] h-1/2  rounded-xl p-4  border-gray-200 focus:border-brand-purple"
             placeholderTextColor={"gray"}
             placeholder="Message"
             value={formData.message}
             onChangeText={(text) => setFormData({ ...formData, message: text })}
             multiline={true}
-            numberOfLines={5}
+            style={{ textAlignVertical: "top" }}
           />
 
           <View className=" flex-grow items-center justify-center">
