@@ -7,6 +7,7 @@ import {
   Keyboard,
   FlatList,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import React, { useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
@@ -15,6 +16,8 @@ import DropDown from "@/components/DropDown";
 import ConfirmDeletionModal from "@/components/ConfirmDeletionModal";
 import { AuthContext } from "@/context/authContext";
 import PopUp from "@/components/PopUp";
+import { useHeaderHeight } from "@react-navigation/elements";
+
 const options = [
   "Poor service",
   "I've found a better alternative",
@@ -35,6 +38,8 @@ const bulletPoints = [
 ];
 
 const deleteAccount = () => {
+  const headerHeight = useHeaderHeight();
+
   const { user } = useContext(AuthContext);
   //sets the reasonEnum to the ENUM value expected by backend
   const handleDeleteReason = (option) => {
@@ -53,7 +58,12 @@ const deleteAccount = () => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView className={`h-full bg-white `}>
-        <View className="my-6  self-center  relative">
+        <View
+          style={{
+            paddingTop: Platform.OS === "android" ? headerHeight : 0,
+          }}
+          className=" self-center mb-4  relative"
+        >
           <Avatar size={100} />
           <View className="bg-red-500 p-2 absolute right-1 bottom-1 w-10 h-10 flex items-center justify-center square rounded-full">
             <AntDesign name="exclamationcircle" size={14} color="white" />
