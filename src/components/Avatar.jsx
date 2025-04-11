@@ -1,6 +1,5 @@
 import { View, Image } from "react-native";
 import React from "react";
-import DropDown from "./DropDown";
 
 const Avatar = ({ size }) => {
   return (

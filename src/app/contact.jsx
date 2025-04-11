@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
 import DropDown from "@/components/DropDown";
 
 const options = ["General Equiry", "Technical Support", "Billing", "Other"];

@@ -8,58 +8,50 @@ import {
   Keyboard,
   TouchableOpacity,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import "../../global.css";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import TextInputWithLogo from "@/components/TextInputWithLogo";
 import LoginIcon from "@/app/LoginIcon";
 import { Link, router, useNavigation } from "expo-router";
+import "@expo/metro-runtime";
 import { LinearGradient } from "expo-linear-gradient";
 import { AuthContext } from "@/context/authContext";
 
-const SignUp = () => {
+const index = () => {
   const { setUser } = useContext(AuthContext);
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const handleSignup = async () => {
-    //PRODUCTION CODE
-    // if (!userData.username || !userData.email || !userData.password) {
-    //   alert("Please complete all fields");
-    //   return;
-    // }
-    // const response = await fetch(`http://0.0.0.0:8000/signup/`, {
+  const handleLogin = async () => {
+    // production code
+    // const response = await fetch(`http://0.0.0.0:8000/login/`, {
     //   method: "POST",
     //   headers: {
     //     Accept: "application/json",
     //     "Content-Type": "application/json",
     //   },
-    //   body: JSON.stringify(userData),
+    //   body: JSON.stringify(loginData),
     // });
-
     // switch (response.status) {
-    //   case 409:
-    //     alert("This email or username already exists");
+    //   case 404:
+    //     alert("Invalid credentials: email doesn't exist");
     //     break;
-    //   case 400:
-    //     alert("An error occured");
+    //   case 401:
+    //     alert("Invalid credentials: incorrect password");
     //     break;
-    //   case 201:
+    //   case 200:
     //     const data = await response.json();
     //     setUser({
     //       id: data.id,
-    //       username: data.username,
-    //       email: data.email,
+    //       username: data.account_details[0].username,
+    //       email: data.account_details[0].email,
     //     });
     //     router.replace("/home");
     //     break;
     // }
-
-    //DEV CODE
+    // dev code
     router.replace("/home");
   };
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <LinearGradient style={{ flex: 1 }} colors={["#340C4C", "#EB7363"]}>
@@ -72,44 +64,35 @@ const SignUp = () => {
               resizeMode="contain"
             />
             <Text className="text-brand-navy text-center text-3xl font-bold">
-              Tell Us About Yourself
-            </Text>
-            <Text className="text-xl font-semibold text-center">
-              Create an Account
+              Redback Smart Bike
             </Text>
             <View className="gap-4 my-12">
               <TextInputWithLogo
-                data={userData}
-                setData={setUserData}
-                placeholder={"Name"}
-                logo={<AntDesign name="user" size={24} color="black" />}
-                id="username"
-              />
-              <TextInputWithLogo
-                data={userData}
-                setData={setUserData}
+                id={"email"}
                 logo={<AntDesign name="mail" size={24} color="black" />}
                 placeholder={"example@gmail.com"}
-                id={"email"}
+                data={loginData}
+                setData={setLoginData}
               />
-
               <TextInputWithLogo
-                data={userData}
-                setData={setUserData}
+                id={"password"}
                 secure
                 logo={<AntDesign name="lock1" size={28} color="black" />}
                 placeholder={"Enter your password"}
-                id={"password"}
+                data={loginData}
+                setData={setLoginData}
               />
             </View>
             <TouchableOpacity
-              onPress={handleSignup}
+              onPress={handleLogin}
               className="bg-brand-purple w-2/3 self-center rounded-full px-6 py-4"
             >
-              <Text className="text-white text-lg text-center">
-                Create Account
-              </Text>
+              <Text className="text-white text-lg text-center">Sign in</Text>
             </TouchableOpacity>
+
+            <Link className="self-center mt-6" href={"/forgot-password"}>
+              <Text>Forgot password?</Text>
+            </Link>
           </View>
           <View className="flex flex-grow justify-center gap-4">
             <View className="flex-row justify-between w-1/2 self-center">
@@ -118,10 +101,10 @@ const SignUp = () => {
               <LoginIcon image={require("@assets/google.png")} />
             </View>
             <Text className="text-white text-center">
-              Already have an account?{" "}
-              <Link href={"/"}>
+              Dont have an account?<Text> </Text>
+              <Link href={"/signup"}>
                 <Text className="text-brand-purple font-semibold">
-                  Sign in here
+                  Sign up here
                 </Text>
               </Link>
             </Text>
@@ -132,4 +115,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default index;

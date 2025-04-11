@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, Dimensions } from "react-native";
-import React, { useRef, useState, useEffect } from "react";
+import { View } from "react-native";
+import React, { useState } from "react";
 // import { BarChart, yAxisSides } from "react-native-gifted-charts";
-import { BarChart, LineChart, StackedBarChart } from "react-native-chart-kit";
+import { LineChart } from "react-native-chart-kit";
 
 const LastWeekActivity = () => {
   const [chartWidth, setChartWidth] = useState(0);
