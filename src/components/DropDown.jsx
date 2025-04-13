@@ -36,7 +36,7 @@ const DropDown = ({ options, selectedOption, handlePress }) => {
       </View>
       <View
         className={`absolute -bottom-[250px] w-full  bg-white rounded-xl overflow-hidden flex  ${
-          menuOpen && "border-[1.5px] border-brand-purple"
+          menuOpen ? "border-[1.5px] border-brand-purple " : "h-0"
         }`}
       >
         {menuOpen &&
