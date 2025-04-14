@@ -67,7 +67,7 @@ const deleteAccount = () => {
           </View>
         </View>
         <View className="p-4 gap-6">
-          <View className="gap-2">
+          <View className="gap-2 z-10">
             <Text className="text font-semibold">
               Reason for account deletion:
             </Text>
