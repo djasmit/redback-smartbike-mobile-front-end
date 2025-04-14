@@ -1,12 +1,22 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { router } from "expo-router";
+import { AuthContext } from "@/context/authContext";
 
-const Setting = ({ settingTitle, icon, link }) => {
+const Setting = ({ settingTitle, icon, link, isLogOut }) => {
+  const { setUser } = useContext(AuthContext);
+
+  const handlePress = () => {
+    if (isLogOut) {
+      console.log("logged out");
+      setUser(null);
+    }
+    router.push(link);
+  };
   return (
     <TouchableOpacity
-      onPress={() => router.push(link)}
+      onPress={handlePress}
       className="flex-row gap-4 items-baseline  my-2"
     >
       <View>{icon}</View>

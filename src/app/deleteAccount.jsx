@@ -99,7 +99,7 @@ const deleteAccount = () => {
             <FlatList
               data={bulletPoints}
               renderItem={({ item }) => (
-                <View className="flex gap-2 flex-row">
+                <View className=" gap-1 flex-row">
                   <Text>{"\u2022 "}</Text>
                   <Text>{item.note}</Text>
                 </View>
