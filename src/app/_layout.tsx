@@ -25,6 +25,12 @@ const _layout = () => {
               headerTintColor: "black",
             }}
           />
+          <Stack.Screen
+            name="scheduleWorkout"
+            options={{
+              presentation: "modal",
+            }}
+          />
         </Stack>
       </AuthProvider>
     </>
