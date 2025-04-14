@@ -1,31 +1,29 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const WorkoutCard = ({ title, image, bgColor }) => {
   return (
-    <LinearGradient
-      colors={[bgColor, "#ffffff"]}
-      start={[0, 0]} // Start from the left
-      end={[1, 0]} // End on the right
-      style={{
-        overflow: "hidden",
-        borderRadius: 48,
-        marginBottom: 4,
-        marginTop: 4,
-      }}
-    >
-      <View className="w-full h-48">
-        <Text className="absolute top-1/3 left-4 text-black font-bold text-3xl">
-          {title}
-        </Text>
-        <Image
-          className="w-56 h-44 absolute bottom-0 right-0"
-          source={image}
-          resizeMode="contain"
-        />
-      </View>
-    </LinearGradient>
+    <TouchableOpacity className="flex-1 aspect-video rounded-xl overflow-hidden">
+      <LinearGradient
+        colors={[bgColor, `${bgColor}60`]}
+        start={[1, 0]} // Start from the left
+        end={[0, 0]} // End on the right
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 12,
+        }}
+      >
+        <View className=" flex-1 h-full justify-between">
+          <Text className="text-3xl">{image}</Text>
+          <Text className=" text-white text-lg font-bold ">{title}</Text>
+        </View>
+        <MaterialIcons name="navigate-next" size={24} color="white" />
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 
