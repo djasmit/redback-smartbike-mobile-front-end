@@ -3,10 +3,8 @@ import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
-import Setting from "@/components/Setting";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { AuthContext } from "@/context/authContext";
+import Setting from "@/components/Setting";
 
 const settingsArray = [
   {
@@ -36,10 +34,15 @@ const settingsArray = [
     link: "/deleteAccount",
     icon: <AntDesign name="deleteuser" size={18} color="black" />,
   },
+  {
+    title: "Logout",
+    link: "/",
+    icon: <AntDesign name="logout" size={18} color="black" />,
+    isLogOut: true,
+  },
 ];
 
 const settings = () => {
-  const { user } = useContext(AuthContext);
   return (
     <View className="flex-1 ">
       <LinearGradient colors={["#994D74", "#3A1C72"]}>
@@ -56,6 +59,7 @@ const settings = () => {
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <Setting
+              isLogOut={!!item.isLogOut}
               settingTitle={item.title}
               link={item.link}
               icon={item.icon}

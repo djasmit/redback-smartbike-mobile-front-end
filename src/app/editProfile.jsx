@@ -2,7 +2,7 @@ import { View, Text, TextInput } from "react-native";
 import React, { useEffect, useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Feather from "@expo/vector-icons/Feather";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { AuthContext } from "@/context/authContext";
 
 const editProfile = () => {
@@ -13,11 +13,11 @@ const editProfile = () => {
   }, []);
 
   return (
-    <SafeAreaView className="bg-white">
+    <SafeAreaView className="bg-white flex-1">
       <View className="self-center relative">
         <Avatar size={100} className="self-center" />
         <View className="w-8 h-8 absolute bottom-1 right-1 rounded-full bg-blue-400 flex items-center justify-center">
-          <Feather name="edit-2" size={12} color="white" />
+          <AntDesign name="edit" size={12} color="white" />{" "}
         </View>
       </View>
       {user && (
