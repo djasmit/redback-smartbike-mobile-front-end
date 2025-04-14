@@ -1,9 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { router } from "expo-router";
+import { useNavigation } from "expo-router";
 
 const confirmAccountDeletion = ({ open, setConfirmDeletion }) => {
   const [deleteSuccessful, setDeleteSuccessful] = useState(false);
+
+  const navigation = useNavigation();
 
   return (
     <View className="bg-black/80  flex-1">
@@ -16,7 +18,12 @@ const confirmAccountDeletion = ({ open, setConfirmDeletion }) => {
           Your account has been successfully deleted. We're sorry to see you go.
         </Text>
         <TouchableOpacity
-          onPress={() => router.replace("/")}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "index" }],
+            });
+          }}
           className="bg-brand-purple p-4 rounded-full "
         >
           <Text className="font-semibold text-center text-white">Close</Text>
