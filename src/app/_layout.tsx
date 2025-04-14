@@ -26,9 +26,18 @@ const _layout = () => {
             }}
           />
           <Stack.Screen
-            name="scheduleWorkout"
+            name="(scheduleWorkout)"
             options={{
               presentation: "modal",
+              headerShown: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="(deleteAccountConfirmation)"
+            options={{
+              presentation: "transparentModal",
+              headerShown: false,
             }}
           />
         </Stack>
