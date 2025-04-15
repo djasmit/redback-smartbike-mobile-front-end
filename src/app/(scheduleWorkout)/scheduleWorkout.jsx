@@ -1,7 +1,7 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import WorkoutCard from "@/components/WorkoutCard";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { router } from "expo-router";
 
 const workoutItems = [
@@ -80,14 +80,14 @@ const scheduleWorkout = () => {
                   Great choice! When're we doing this?
                 </Text>
                 <View className="flex-row justify-center">
-                  <DateTimePicker
+                  <RNDateTimePicker
                     onChange={(event, selectedDate) => {
                       if (selectedDate) setDate(selectedDate);
                     }}
                     mode="date"
                     value={date}
                   />
-                  <DateTimePicker
+                  <RNDateTimePicker
                     onChange={(event, selectedTime) => {
                       if (selectedTime) setTime(selectedTime);
                     }}

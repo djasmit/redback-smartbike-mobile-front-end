@@ -17,7 +17,7 @@ const editProfile = () => {
       <View className="self-center relative">
         <Avatar size={100} className="self-center" />
         <View className="w-8 h-8 absolute bottom-1 right-1 rounded-full bg-blue-400 flex items-center justify-center">
-          <AntDesign name="edit" size={12} color="white" />{" "}
+          <AntDesign name="edit" size={12} color="white" />
         </View>
       </View>
       {user && (
