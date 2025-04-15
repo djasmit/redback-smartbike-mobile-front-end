@@ -87,7 +87,7 @@ This will add the home screen to the top of the stack and allow for users to nav
 
 Alternatively the Link tag can also be used
 ```bash
-   <Link href={"/home}>
+   <Link href={"/home"}>
       <Text>Go to home page</Home>
    </Link>
 ```
