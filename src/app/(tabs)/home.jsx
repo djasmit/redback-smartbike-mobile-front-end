@@ -1,13 +1,12 @@
 import { View, SafeAreaView, Text, FlatList } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import Avatar from "@/components/Avatar";
 import LastWeekActivity from "@/components/LastWeekActivity";
 import WelcomeMessage from "@/components/WelcomeMessage";
 import HomeScreenTile from "@/components/HomeScreenTile";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Link } from "expo-router";
-import { TouchableOpacity } from "react-native";
+import { AuthContext } from "@/context/authContext";
 
 const homeTiles = [
   {
@@ -26,12 +25,13 @@ const homeTiles = [
 ];
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   return (
     <SafeAreaView className="flex-1 bg-black">
       <View className="p-4">
         {/* Header */}
         <View className="flex-row justify-between items-center my-6">
-          <WelcomeMessage name={"Jordan Anderson"} />
+          <WelcomeMessage name={user.username} />
           <Avatar size={50} />
         </View>
 
