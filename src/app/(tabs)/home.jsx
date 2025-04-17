@@ -1,4 +1,3 @@
-
 import { View, SafeAreaView, Text, FlatList } from "react-native";
 import React from "react";
 import Avatar from "@/components/Avatar";
@@ -19,7 +18,7 @@ const homeTiles = [
     link: "",
     icon: <MaterialCommunityIcons name={"bike"} size={52} color="#EB7363" />,
   },
-   {
+  {
     title: "Friends",
     link: "/friends",
     icon: <MaterialIcons name="group" size={42} color="#EB7363" />,
@@ -44,9 +43,7 @@ const Home = () => {
           contentContainerClassName="gap-4"
           numColumns={2}
           data={homeTiles}
-          renderItem={({ item }) => (
-            <HomeScreenTile tileTitle={item.title} icon={item.icon} />
-          )}
+          renderItem={({ item }) => <HomeScreenTile item={item} />}
         />
       </View>
     </SafeAreaView>
