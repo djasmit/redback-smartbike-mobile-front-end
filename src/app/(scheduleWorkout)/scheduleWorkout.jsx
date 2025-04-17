@@ -1,8 +1,10 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import WorkoutCard from "@/components/WorkoutCard";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { router } from "expo-router";
+import IOSTimeDatePickers from "@/components/IOSTimeDatePickers";
+import { Platform } from "react-native";
+import AndroidTimeDatePickers from "@/components/AndroidTimeDatePickers";
 
 const workoutItems = [
   {
@@ -40,7 +42,6 @@ const workoutItems = [
 const scheduleWorkout = () => {
   const [selectedWorkout, setSelectedWorkout] = useState("");
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
   const [scheduled, setScheduled] = useState(false);
 
   return (
@@ -79,22 +80,16 @@ const scheduleWorkout = () => {
                 <Text className="text-center">
                   Great choice! When're we doing this?
                 </Text>
-                <View className="flex-row justify-center">
-                  <RNDateTimePicker
-                    onChange={(event, selectedDate) => {
-                      if (selectedDate) setDate(selectedDate);
-                    }}
-                    mode="date"
-                    value={date}
-                  />
-                  <RNDateTimePicker
-                    onChange={(event, selectedTime) => {
-                      if (selectedTime) setTime(selectedTime);
-                    }}
-                    value={time}
-                    mode="time"
-                  />
-                </View>
+
+                {Platform.OS === "ios" ? (
+                  <IOSTimeDatePickers date={date} setDate={setDate} />
+                ) : (
+                  <AndroidTimeDatePickers date={date} setDate={setDate} />
+                )}
+
+                {Platform.OS === "android" && (
+                  <Text className="text-center">{date.toLocaleString()}</Text>
+                )}
 
                 <TouchableOpacity
                   onPress={() => setScheduled(true)}
