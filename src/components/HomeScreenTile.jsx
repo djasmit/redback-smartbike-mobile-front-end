@@ -5,6 +5,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const HomeScreenTile = ({ tileTitle, icon }) => {
   return (
+
+
     <View className=" flex-1 aspect-square rounded-xl overflow-hidden">
       <LinearGradient
         colors={["#1C1C1E", "#212124"]}
