@@ -7,7 +7,9 @@ import { router } from "expo-router";
 const HomeScreenTile = ({ item }) => {
   return (
     <TouchableOpacity
-      onPress={() => router.push(`${item.link}`)}
+      onPress={() => {
+        item.link && router.push(`${item.link}`);
+      }}
       className=" flex-1 aspect-square rounded-xl overflow-hidden"
     >
       <LinearGradient

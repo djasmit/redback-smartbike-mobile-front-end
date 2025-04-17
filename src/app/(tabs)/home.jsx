@@ -12,6 +12,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 const homeTiles = [
   {
     title: "Connect",
+    link: "",
   },
   {
     title: "Start workout",
