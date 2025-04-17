@@ -33,7 +33,7 @@ const editProfile = () => {
                 setFormData({ ...formData, username: text })
               }
               className="border border-gray-400 p-2 rounded-xl"
-              placeholder={user.username}
+              placeholder={user.username ? user.username : "Username"}
             />
           </View>
           <View className="gap-2">

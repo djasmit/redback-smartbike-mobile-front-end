@@ -31,7 +31,7 @@ const Home = () => {
       <View className="p-4">
         {/* Header */}
         <View className="flex-row justify-between items-center my-6">
-          <WelcomeMessage name={user.username} />
+          <WelcomeMessage name={user.username ? user.username : "Username"} />
           <Avatar size={50} />
         </View>
 
