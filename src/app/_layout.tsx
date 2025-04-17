@@ -18,14 +18,6 @@ const _layout = () => {
           <Stack.Screen name="index" options={{ headerShown: false }} />
 
           <Stack.Screen
-            name="deleteAccount"
-            options={{
-              headerShown: true,
-              headerTitle: "Delete Account",
-              headerTintColor: "black",
-            }}
-          />
-          <Stack.Screen
             name="(scheduleWorkout)"
             options={{
               presentation: "modal",
@@ -39,6 +31,42 @@ const _layout = () => {
               presentation: "transparentModal",
               headerShown: false,
               animation: "fade",
+            }}
+          />
+
+          <Stack.Screen
+            name="(settings)/editProfile"
+            options={{
+              headerShown: true,
+              headerTitle: "Edit Profile",
+              headerTintColor: "black",
+            }}
+          />
+
+          <Stack.Screen
+            name="(settings)/deleteAccount"
+            options={{
+              headerShown: true,
+              headerTitle: "Delete Account",
+              headerTintColor: "black",
+            }}
+          />
+
+          <Stack.Screen
+            name="(settings)/privacySettings"
+            options={{
+              headerShown: true,
+              headerTitle: "Privacy",
+              headerTintColor: "black",
+            }}
+          />
+
+          <Stack.Screen
+            name="(settings)/aboutUs"
+            options={{
+              headerShown: true,
+              headerTitle: "About",
+              headerTintColor: "black",
             }}
           />
         </Stack>

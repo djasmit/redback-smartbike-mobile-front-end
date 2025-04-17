@@ -3,6 +3,13 @@ import { useHeaderHeight } from "@react-navigation/elements";
 
 import React from "react";
 
+const scheduledWorkout = [
+  {
+    type: "",
+    date: "",
+  },
+];
+
 const workoutSchedule = () => {
   const headerHeight = useHeaderHeight();
   return (
