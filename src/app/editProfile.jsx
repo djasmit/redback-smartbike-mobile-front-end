@@ -8,9 +8,9 @@ import { AuthContext } from "@/context/authContext";
 const editProfile = () => {
   const { user, setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ username: "", email: "" });
-  useEffect(() => {
-    setUser({ id: 1, username: "Jordan", email: "jordan@gmail.com" });
-  }, []);
+  // useEffect(() => {
+  //   setUser({ id: 1, username: "Jordan", email: "jordan@gmail.com" });
+  // }, []);
 
   return (
     <SafeAreaView className="bg-white flex-1">
@@ -33,7 +33,7 @@ const editProfile = () => {
                 setFormData({ ...formData, username: text })
               }
               className="border border-gray-400 p-2 rounded-xl"
-              placeholder={user.username}
+              placeholder={user.username ? user.username : "Username"}
             />
           </View>
           <View className="gap-2">
