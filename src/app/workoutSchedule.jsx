@@ -9,7 +9,9 @@ const workoutSchedule = () => {
     <SafeAreaView
       style={{ padding: Platform.OS === "android" ? headerHeight : 0 }}
     >
-      <Text>workoutSchedule</Text>
+      <Text className="text-xl text-center font-bold">
+        Your Scheduled Workouts
+      </Text>
     </SafeAreaView>
   );
 };
