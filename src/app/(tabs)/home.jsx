@@ -7,20 +7,27 @@ import HomeScreenTile from "@/components/HomeScreenTile";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { AuthContext } from "@/context/authContext";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const homeTiles = [
   {
     title: "Connect",
+    link: "",
   },
   {
     title: "Start workout",
     link: "",
-    icon: <MaterialCommunityIcons name={"bike"} size={52} color="#EB7363" />,
+    icon: <MaterialCommunityIcons name={"bike"} size={42} color="#EB7363" />,
   },
   {
     title: "Friends",
     link: "/friends",
     icon: <MaterialIcons name="group" size={42} color="#EB7363" />,
+  },
+  {
+    title: "Schedule",
+    link: "/workoutSchedule",
+    icon: <AntDesign name="calendar" size={42} color="#EB7363" />,
   },
 ];
 
