@@ -22,7 +22,7 @@ npx expo start
 **No device?** 
 key 'w' to run in the browser
 
-# To contribute to poject 
+# To contribute to project 
 
 1. Fork the repository
 
