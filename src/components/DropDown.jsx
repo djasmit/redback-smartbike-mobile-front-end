@@ -2,8 +2,6 @@ import { View, Text, TouchableOpacity, Modal, Keyboard } from "react-native";
 import React, { useState } from "react";
 import Entypo from "@expo/vector-icons/Entypo";
 
-//TODO change how dropdown render fade in opacity instead of
-
 const DropDown = ({ options, selectedOption, handlePress }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,7 +12,7 @@ const DropDown = ({ options, selectedOption, handlePress }) => {
         setMenuOpen(!menuOpen);
         Keyboard.dismiss();
       }}
-      className={`border-[1.5px] flex-1 relative rounded-xl ${
+      className={`border-[1.5px]  relative rounded-xl ${
         menuOpen ? "border-brand-purple" : "border-gray-200"
       }`}
     >

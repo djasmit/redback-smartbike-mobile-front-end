@@ -1,4 +1,11 @@
-import { View, Text, TextInput, Platform, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Platform,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -13,8 +20,12 @@ const editProfile = () => {
   //   setUser({ id: 1, username: "Jordan", email: "jordan@gmail.com" });
   // }, []);
 
+  const submitChanges = async () => {
+    //logic to submit changes and update account details.
+  };
+
   return (
-    <SafeAreaView className="bg-white flex-1">
+    <SafeAreaView className="bg-white flex-1 border-2">
       <View style={{ padding: Platform.OS === "android" ? headerHeight : 0 }}>
         <Avatar
           size={100}
@@ -24,11 +35,8 @@ const editProfile = () => {
         />
       </View>
       {user && (
-        <View
-          className=" gap-4
-        p-4"
-        >
-          <View className="gap-2">
+        <View className="flex-1 gap-4 p-4">
+          <View className="gap-2 ">
             <Text>Username:</Text>
             <TextInput
               value={formData.username}
@@ -51,6 +59,18 @@ const editProfile = () => {
               placeholder={"*********"}
             />
           </View>
+
+          <Text>{formData.username}</Text>
+          <Text>{formData.password}</Text>
+
+          <TouchableOpacity
+            onPress={submitChanges}
+            className="bg-brand-purple p-4 rounded-xl mt-auto"
+          >
+            <Text className="text-white text-center font-semibold">
+              Submit Changes
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
     </SafeAreaView>
