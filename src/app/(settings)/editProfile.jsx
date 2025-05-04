@@ -25,7 +25,7 @@ const editProfile = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white flex-1 border-2">
+    <SafeAreaView className="bg-white flex-1">
       <View style={{ padding: Platform.OS === "android" ? headerHeight : 0 }}>
         <Avatar
           size={100}
