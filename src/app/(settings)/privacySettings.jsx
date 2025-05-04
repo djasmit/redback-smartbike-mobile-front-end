@@ -19,7 +19,7 @@ const privacySettings = () => {
           />
         </View>
         <View>
-          <Text className="font-semibold">Notication Settings</Text>
+          <Text className="font-semibold">Notification Settings</Text>
         </View>
       </View>
     </SafeAreaView>
