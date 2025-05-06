@@ -1,55 +1,54 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 
-export default function FriendsScreen() {
-  const router = useRouter();
+const groups = [
+  {
+    title: "🏁 Fitness Squad",
+    goal: "100 km this week",
+    progress: "62km",
+  },
+  {
+    title: "🚴‍♀️ Hill Climbers",
+    goal: "200 mins ride",
+    progress: "110 mins",
+  },
+];
 
+const FriendsScreen = () => {
   return (
-    <ScrollView style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>
-        👥 Friends & Groups
-      </Text>
+    <SafeAreaView className="flex-grow bg-white">
+      <View className="p-4">
+        <Text className="text-2xl font-bold">👥 Friends & Groups</Text>
+        {/* Add Friend Button */}
+        <TouchableOpacity className="my-6 bg-brand-purple p-4 rounded-xl">
+          <Text className="text-white text-center font-semibold">
+            + Add Friend
+          </Text>
+        </TouchableOpacity>
 
-      {/* Add Friend Button */}
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#2563eb',
-          padding: 12,
-          borderRadius: 12,
-          marginBottom: 16,
-        }}
-      >
-        <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>
-          + Add Friend
-        </Text>
-      </TouchableOpacity>
-
-      {/* Group Example 1 */}
-      <View
-        style={{
-          backgroundColor: '#f3f4f6',
-          padding: 16,
-          borderRadius: 16,
-          marginBottom: 12,
-        }}
-      >
-        <Text style={{ fontSize: 18, fontWeight: '500' }}>🏁 Fitness Squad</Text>
-        <Text style={{ color: '#6b7280' }}>Goal: 100km this week</Text>
-        <Text style={{ color: '#6b7280' }}>Progress: 62km</Text>
+        <FlatList
+          ItemSeparatorComponent={<View className="h-4" />}
+          data={groups}
+          renderItem={({ item }) => {
+            return (
+              <View className="bg-gray-100 p-4 rounded-xl">
+                <Text style={{ fontSize: 18, fontWeight: "500" }}>
+                  {item.title}
+                </Text>
+                <Text className="text-gray-600">{item.goal}</Text>
+                <Text className="text-gray-600">{item.progress}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
-
-      {/* Group Example 2 */}
-      <View
-        style={{
-          backgroundColor: '#f3f4f6',
-          padding: 16,
-          borderRadius: 16,
-        }}
-      >
-        <Text style={{ fontSize: 18, fontWeight: '500' }}>🚴‍♀️ Hill Climbers</Text>
-        <Text style={{ color: '#6b7280' }}>Goal: 200 mins ride</Text>
-        <Text style={{ color: '#6b7280' }}>Progress: 110 mins</Text>
-      </View>
-    </ScrollView>
+    </SafeAreaView>
   );
-}
+};
+
+export default FriendsScreen;
