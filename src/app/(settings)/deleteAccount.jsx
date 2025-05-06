@@ -61,10 +61,13 @@ const deleteAccount = () => {
           }}
           className=" self-center mb-4  relative"
         >
-          <Avatar size={100} />
-          <View className="bg-red-500 p-2 absolute right-1 bottom-1 w-10 h-10 flex items-center justify-center square rounded-full">
-            <AntDesign name="exclamationcircle" size={14} color="white" />
-          </View>
+          <Avatar
+            size={100}
+            icon={
+              <AntDesign name="exclamationcircle" size={14} color="white" />
+            }
+            iconBgColour={"bg-red-500"}
+          />
         </View>
         <View className="p-4 gap-6">
           <View className="gap-2 z-10">

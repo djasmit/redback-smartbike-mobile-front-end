@@ -4,6 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+
 import Setting from "@/components/Setting";
 import { AuthContext } from "@/context/authContext";
 
@@ -24,6 +26,11 @@ const settingsArray = [
     title: "My Workout History",
     link: "/workoutHistory",
     icon: <AntDesign name="barchart" size={18} color="black" />,
+  },
+  {
+    title: "Privacy Settings",
+    link: "/privacySettings",
+    icon: <AntDesign name="lock1" size={20} color="black" />,
   },
   {
     title: "About Us",
