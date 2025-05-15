@@ -20,14 +20,20 @@ const homeTiles = [
     icon: <MaterialCommunityIcons name={"bike"} size={42} color="#EB7363" />,
   },
   {
-    title: "Friends",
-    link: "/friends",
-    icon: <MaterialIcons name="group" size={42} color="#EB7363" />,
+    title: "Groups",
+    link: "/groups",
+    icon:  <MaterialIcons name="groups" size={42} color="#Eb7363" />,
   },
   {
     title: "Schedule",
     link: "/workoutSchedule",
     icon: <AntDesign name="calendar" size={42} color="#EB7363" />,
+  },
+
+  {
+    title: "Friends",
+    link: "/friendslist",
+    icon: <MaterialIcons name="group" size={42} color="#EB7363" />
   },
 ];
 
