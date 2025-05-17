@@ -12,14 +12,16 @@ const privacySettings = () => {
       <View style={{ paddingTop: Platform.OS === "android" && headerHeight }}>
         <View className="p-4 gap-4 items-center flex-row">
           <Text className="font-semibold">Profile Visibility</Text>
-          <DropDown
-            handlePress={(selectedOption) => setVisibility(selectedOption)}
-            options={visibilityOptions}
-            selectedOption={visibility}
-          />
+          <View className="flex-1">
+            <DropDown
+              handlePress={(selectedOption) => setVisibility(selectedOption)}
+              options={visibilityOptions}
+              selectedOption={visibility}
+            />
+          </View>
         </View>
         <View>
-          <Text className="font-semibold">Notification Settings</Text>
+          <Text className="font-semibold p-4">Notification Settings</Text>
         </View>
       </View>
     </SafeAreaView>

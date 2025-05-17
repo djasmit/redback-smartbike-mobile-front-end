@@ -3,17 +3,19 @@ import {
   Text,
   TextInput,
   Platform,
-  SafeAreaView,
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { AuthContext } from "@/context/authContext";
-import { useHeaderHeight } from "@react-navigation/elements";
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const editProfile = () => {
-  const headerHeight = useHeaderHeight();
   const { user, setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ username: "", email: "" });
   // useEffect(() => {
@@ -24,9 +26,11 @@ const editProfile = () => {
     //logic to submit changes and update account details.
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView className="bg-white flex-1">
-      <View style={{ padding: Platform.OS === "android" ? headerHeight : 0 }}>
+      <View style={{ padding: Platform.OS === "android" ? insets.top : 0 }}>
         <Avatar
           size={100}
           className="self-center"
@@ -65,7 +69,7 @@ const editProfile = () => {
 
           <TouchableOpacity
             onPress={submitChanges}
-            className="bg-brand-purple p-4 rounded-xl mt-auto"
+            className={`bg-brand-purple p-4 rounded-xl mt-auto `}
           >
             <Text className="text-white text-center font-semibold">
               Submit Changes
