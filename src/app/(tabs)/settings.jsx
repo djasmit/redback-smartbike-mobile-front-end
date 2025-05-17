@@ -10,6 +10,13 @@ import Setting from "@/components/Setting";
 import { AuthContext } from "@/context/authContext";
 
 const settingsArray = [
+
+  {
+    title: "My Profile",
+    link: "/myProfile",
+    icon: <AntDesign name="user" size={18} color="black" />,
+  },
+
   {
     title: "Edit Profile",
     link: "/editProfile",

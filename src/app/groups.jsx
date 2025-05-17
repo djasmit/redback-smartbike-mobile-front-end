@@ -19,11 +19,11 @@ const groups = [
   },
 ];
 
-const FriendsScreen = () => {
+const groupsScreen = () => {
   return (
     <SafeAreaView className="flex-grow bg-white">
       <View className="p-4">
-        <Text className="text-2xl font-bold">👥 Friends & Groups</Text>
+        <Text className="text-2xl font-bold">👥 Groups</Text>
         {/* Add Friend Button */}
         <TouchableOpacity className="my-6 bg-brand-purple p-4 rounded-xl">
           <Text className="text-white text-center font-semibold">
@@ -51,4 +51,4 @@ const FriendsScreen = () => {
   );
 };
 
-export default FriendsScreen;
+export default groupsScreen;
