@@ -1,6 +1,6 @@
-import { View, Text, SafeAreaView, Platform } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { useHeaderHeight } from "@react-navigation/elements";
-
+import CustomSafeArea from "@/components/CustomSafeArea";
 import React from "react";
 
 const scheduledWorkout = [
@@ -13,13 +13,11 @@ const scheduledWorkout = [
 const workoutSchedule = () => {
   const headerHeight = useHeaderHeight();
   return (
-    <SafeAreaView
-      style={{ padding: Platform.OS === "android" ? headerHeight : 0 }}
-    >
+    <CustomSafeArea>
       <Text className="text-xl text-center font-bold">
         Your Scheduled Workouts
       </Text>
-    </SafeAreaView>
+    </CustomSafeArea>
   );
 };
 

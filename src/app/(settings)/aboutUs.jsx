@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  SafeAreaView,
   FlatList,
   TouchableOpacity,
   Image,
@@ -13,7 +12,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import { router } from "expo-router";
-import { useHeaderHeight } from "@react-navigation/elements";
+import CustomSafeArea from "@/components/CustomSafeArea";
 
 const links = [
   {
@@ -43,16 +42,9 @@ const links = [
 ];
 
 const aboutUs = () => {
-  const headerHeight = useHeaderHeight();
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-      }}
-    >
+    <CustomSafeArea>
       <FlatList
-        style={{ paddingTop: Platform.OS === "android" && headerHeight }}
         ListHeaderComponent={
           <View className="p-4  gap-4">
             <Image
@@ -109,7 +101,7 @@ const aboutUs = () => {
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </CustomSafeArea>
   );
 };
 

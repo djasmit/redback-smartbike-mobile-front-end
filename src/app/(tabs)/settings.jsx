@@ -4,13 +4,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import Avatar from "@/components/Avatar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import CustomSafeArea from "@/components/CustomSafeArea";
 
 import Setting from "@/components/Setting";
 import { AuthContext } from "@/context/authContext";
 
 const settingsArray = [
-
   {
     title: "My Profile",
     link: "/myProfile",

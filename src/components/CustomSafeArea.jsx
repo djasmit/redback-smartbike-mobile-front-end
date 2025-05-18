@@ -1,0 +1,30 @@
+import { View, Text } from "react-native";
+import React from "react";
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import { Platform } from "react-native";
+
+const CustomSafeArea = ({
+  children,
+  bgColour = "white",
+  applyTopInset = true,
+}) => {
+  const insets = useSafeAreaInsets();
+  const topPadding =
+    Platform.OS === "android" && applyTopInset ? insets.top : 0;
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView
+        style={{ paddingTop: topPadding }}
+        className={`flex-1 bg-${bgColour}`}
+      >
+        {children}
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
+};
+
+export default CustomSafeArea;
