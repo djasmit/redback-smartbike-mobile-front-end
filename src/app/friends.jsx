@@ -20,7 +20,9 @@ const groups = [
   },
 ];
 
-const groupsScreen = () => {
+const FriendsScreen = () => {
+  const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView
@@ -57,4 +59,4 @@ const groupsScreen = () => {
   );
 };
 
-export default groupsScreen;
+export default FriendsScreen;

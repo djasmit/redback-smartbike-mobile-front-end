@@ -5,12 +5,14 @@ import { router } from "expo-router";
 import { AuthContext } from "@/context/authContext";
 
 const Setting = ({ settingTitle, icon, link, isLogOut }) => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser, user } = useContext(AuthContext);
 
   const handlePress = () => {
     if (isLogOut) {
       console.log("logged out");
-      setUser(null);
+      if (user) {
+        setUser({});
+      }
     }
     router.push(link);
   };
