@@ -1,9 +1,9 @@
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import WorkoutCard from "@/components/WorkoutCard";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
+import CustomSafeArea from "@/components/CustomSafeArea";
 
 const workoutItems = [
   {
@@ -40,7 +40,7 @@ const workoutItems = [
 
 const workouts = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white ">
+    <CustomSafeArea applyTopInset={false} className="flex-1 bg-white">
       <View className="flex-row justify-between items-center m-2">
         <Text className="text-brand-purple my-6 font-bold text-4xl">
           Track your fitness
@@ -63,7 +63,7 @@ const workouts = () => {
           />
         )}
       />
-    </SafeAreaView>
+    </CustomSafeArea>
   );
 };
 

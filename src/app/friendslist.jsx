@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
-import {SafeAreaView, useSafeAreaInsets, SafeAreaProvider,} from "react-native-safe-area-context";
+import CustomSafeArea from "@/components/CustomSafeArea";
 import { router } from "expo-router";
 const initialFriends = [
   {
@@ -37,19 +37,21 @@ const FriendsList = () => {
   const [friends] = useState(initialFriends);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView> 
-    
-    <View className="mt-5">
-      <Text className="text-black text-4xl font-bold mb-2 pl-2">Friends</Text>
-      <FlatList
-        data={friends}
-        keyExtractor={(item) => item.id.toString()}
-        numColumns={2}
-        contentContainerStyle={{ padding: 10, gap: 10 }}
-        renderItem={({ item }) => (
-          
-            <TouchableOpacity onPress={() => {router.push(`friendsdetails/${item.id}`)}} className="bg-green-500 rounded-xl items-center m-2 py-5 flex-1 shadow-md">
+    <CustomSafeArea>
+      <View className="mt-5">
+        <Text className="text-black text-4xl font-bold mb-2 pl-2">Friends</Text>
+        <FlatList
+          data={friends}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          contentContainerStyle={{ padding: 10, gap: 10 }}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => {
+                router.push(`friendsdetails/${item.id}`);
+              }}
+              className="bg-green-500 rounded-xl items-center m-2 py-5 flex-1 shadow-md"
+            >
               <Image
                 source={{ uri: item.photo }}
                 className="w-20 h-20 rounded-full mb-2"
@@ -57,15 +59,11 @@ const FriendsList = () => {
               <Text className="text-white text-base font-semibold">
                 {item.name}
               </Text>
-            
             </TouchableOpacity>
-          
-        )}
-      />
-    </View>
-    </SafeAreaView>
-    </SafeAreaProvider>
-    
+          )}
+        />
+      </View>
+    </CustomSafeArea>
   );
 };
 

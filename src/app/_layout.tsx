@@ -69,6 +69,15 @@ const _layout = () => {
               headerTintColor: "black",
             }}
           />
+
+          <Stack.Screen
+            name="currentWorkout"
+            options={{
+              headerShown: true,
+              headerTitle: "",
+              headerTintColor: "white",
+            }}
+          />
         </Stack>
       </AuthProvider>
     </>

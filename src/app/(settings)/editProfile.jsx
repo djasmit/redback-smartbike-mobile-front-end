@@ -1,20 +1,10 @@
-import {
-  View,
-  Text,
-  TextInput,
-  Platform,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useEffect, useContext, useState } from "react";
 import Avatar from "@/components/Avatar";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { AuthContext } from "@/context/authContext";
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
 
+import CustomSafeArea from "@/components/CustomSafeArea";
 const editProfile = () => {
   const { user, setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ username: "", email: "" });
@@ -26,11 +16,9 @@ const editProfile = () => {
     //logic to submit changes and update account details.
   };
 
-  const insets = useSafeAreaInsets();
-
   return (
-    <SafeAreaView className="bg-white flex-1">
-      <View style={{ padding: Platform.OS === "android" ? insets.top : 0 }}>
+    <CustomSafeArea>
+      <View>
         <Avatar
           size={100}
           className="self-center"
@@ -77,7 +65,7 @@ const editProfile = () => {
           </TouchableOpacity>
         </View>
       )}
-    </SafeAreaView>
+    </CustomSafeArea>
   );
 };
 
