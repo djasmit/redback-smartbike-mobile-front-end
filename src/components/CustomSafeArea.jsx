@@ -18,8 +18,8 @@ const CustomSafeArea = ({
   return (
     <SafeAreaProvider>
       <SafeAreaView
-        style={{ paddingTop: topPadding }}
-        className={`flex-1 bg-${bgColour}`}
+        style={{ paddingTop: topPadding, backgroundColor: bgColour }}
+        className={`flex-1 `}
       >
         {children}
       </SafeAreaView>
