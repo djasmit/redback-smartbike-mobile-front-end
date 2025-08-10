@@ -3,6 +3,7 @@ import React from "react";
 import { Tabs } from "expo-router";
 import Entypo from "@expo/vector-icons/Entypo";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 const _layout = () => {
   return (
@@ -58,6 +59,19 @@ const _layout = () => {
                 color={focused ? "#EB7363" : "gray"}
               />
             </>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="friends"
+        options={{
+          title: "friends",
+          tabBarIcon: ({ focused }) => (
+            <FontAwesome5
+              name="users"             
+              size={24}
+              color={focused ? "#EB7363" : "gray"}
+            />
           ),
         }}
       />
