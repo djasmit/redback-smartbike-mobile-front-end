@@ -9,183 +9,190 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
+import { BarChart } from 'react-native-chart-kit';
 
 const screenWidth = Dimensions.get('window').width;
 
 const chartConfig = {
-  backgroundGradientFrom: '#ffffff',
-  backgroundGradientTo: '#ffffff',
-  decimalPlaces: 0,
-  color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
-  labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+  backgroundGradientFrom: '#121212',
+  backgroundGradientTo: '#1a1a1a',
+  decimalPlaces: 2,
+  color: (opacity = 1) => `rgba(255, 99, 71, ${opacity})`,
+  labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
   style: {
     borderRadius: 16,
   },
-  propsForDots: {
-    r: '4',
-    strokeWidth: '2',
-    stroke: '#007bff',
+  propsForBackgroundLines: {
+    strokeDasharray: '',
+    stroke: 'rgba(255,255,255,0.1)',
   },
 };
 
-const defaultLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const defaultData = [30, 20, 60, 50, 30, 60, 30];
+// 👉 Replace this with the EXACT values from your uploaded workout summary
+const mockData = [
+  { day: 'Mon', minutes: 22 },
+  { day: 'Tue', minutes: 48 },
+  { day: 'Wed', minutes: 26 },
+  { day: 'Thu', minutes: 55 },
+  { day: 'Fri', minutes: 99 },
+  { day: 'Sat', minutes: 35 },
+  { day: 'Sun', minutes: 20 },
+];
 
-const Statistics = () => {
-  const [workoutData, setWorkoutData] = useState([]);
+// Workout summary stats (still static for distance, calories, HR)
+const workoutSummary = {
+  totalDistance: '92.4 km',
+  calories: 3250,
+  avgHeartRate: '148 bpm',
+};
+
+export default function RedbackWeeklySummary() {
   const [loading, setLoading] = useState(true);
+  const [rideData, setRideData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Replace this URL with your real API endpoint
-        const response = await fetch('https://mocki.io/v1/9ac6c13b-bc9d-4c97-8ae8-7f0ec82324dc');
-        const json = await response.json();
-        setWorkoutData(json.data);
-      } catch (error) {
-        console.error('Error fetching workout data:', error);
-        setWorkoutData([]); // fallback to empty array on error
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    setTimeout(() => {
+      setRideData(mockData);
+      setLoading(false);
+    }, 1000);
   }, []);
 
-  const getChartData = () => {
-    if (!workoutData || workoutData.length === 0) {
-      return {
-        labels: defaultLabels,
-        datasets: [{ data: defaultData }],
-      };
-    }
+  const totalMinutes = rideData.reduce((sum, d) => sum + d.minutes, 0);
+  const activeDays = rideData.filter(d => d.minutes > 0).length;
 
-    return {
-      labels: workoutData.map((item) => item.day),
-      datasets: [
-        {
-          data: workoutData.map((item) => Number(item.minutes)),
-          color: () => '#007bff',
-          strokeWidth: 2,
-        },
-      ],
-    };
+  // Convert minutes → hours + minutes
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const formattedTotalTime = `${hours}h ${minutes}m`;
+
+  const chartData = {
+    labels: rideData.map(d => d.day),
+    datasets: [
+      {
+        data: rideData.map(d => d.minutes),
+      },
+    ],
   };
 
-  const getTotalMinutes = () => {
-    return workoutData.reduce((sum, item) => sum + Number(item.minutes), 0);
-  };
-
-  const getActiveDays = () => {
-    return workoutData.filter((item) => Number(item.minutes) > 0).length;
-  };
+  const customYLabels = ['0.00', '24.75', '49.50', '74.25', '99.00'];
 
   return (
-    <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight || 0 }}>
-      <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.title}>🚴 Weekly Workout Summary</Text>
-          <Text style={styles.description}>
-            Track your daily workout performance to stay consistent and smash your fitness goals!
-          </Text>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>📊 Weekly Ride Statistics</Text>
+        <Text style={styles.subtitle}>
+          Consistency builds strength—track your weekly wins!
+        </Text>
 
-          {loading ? (
-            <ActivityIndicator size="large" color="#007bff" style={{ marginTop: 20 }} />
-          ) : (
-            <>
-              <LineChart
-                data={getChartData()}
-                width={screenWidth - 32}
-                height={220}
-                chartConfig={chartConfig}
-                bezier
-                style={styles.chart}
-              />
+        {loading ? (
+          <ActivityIndicator size="large" color="#ff4500" style={{ marginTop: 40 }} />
+        ) : (
+          <>
+            <BarChart
+              data={chartData}
+              width={screenWidth - 30}
+              height={260}
+              chartConfig={chartConfig}
+              style={styles.chart}
+              fromZero
+              showValuesOnTopOfBars
+              withInnerLines
+              withHorizontalLabels
+              segments={4} // 4 intervals -> 5 labels
+              formatYLabel={(val) => {
+                const index = Math.round((val / 99) * 4); // map to 0-4
+                return customYLabels[index] || '';
+              }}
+            />
 
-              <View style={styles.statsCard}>
-                <Text style={styles.statsText}>
-                  🕒 Total Minutes: <Text style={styles.bold}>{getTotalMinutes()} mins</Text>
-                </Text>
-                <Text style={styles.statsText}>
-                  📅 Active Days: <Text style={styles.bold}>{getActiveDays()} days</Text>
-                </Text>
-              </View>
+            <View style={styles.stats}>
+  <Text style={styles.statText}>
+    🕒 Total Minutes: <Text style={styles.statHighlight}>{totalMinutes} min</Text>
+  </Text>
+  <Text style={styles.statText}>
+    📅 Active Days: <Text style={styles.statHighlight}>{activeDays} days</Text>
+  </Text>
+</View>
 
-              <View style={styles.messageBox}>
-                <Text style={styles.motivation}>
-                  {getActiveDays() >= 5
-                    ? "🔥 Great job! You're staying consistent!"
-                    : '💪 Keep going! Try to stay active every day!'}
-                </Text>
-              </View>
-            </>
-          )}
-        </View>
+
+            <View style={styles.motivationBox}>
+              <Text style={styles.motivation}>
+                {activeDays >= 5
+                  ? "🔥 Pedal power at max! Your streak is unstoppable!"
+                  : "💪 Keep pushing to hit your weekly targets!"}
+              </Text>
+            </View>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#121212',
+    paddingTop: StatusBar.currentHeight || 20,
+  },
   container: {
-    marginVertical: 16,
-    marginHorizontal: 16,
-    padding: 16,
-    borderRadius: 12,
-    backgroundColor: '#f8f9fa',
-    elevation: 3,
+    paddingHorizontal: 15,
+    paddingBottom: 40,
+    alignItems: 'center',
+    backgroundColor: '#121212',
   },
   title: {
-    fontSize: 20,
-    fontWeight: '700',
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#ff4500',
+    marginTop: 20,
     marginBottom: 8,
     textAlign: 'center',
-    color: '#007bff',
   },
-  description: {
+  subtitle: {
     fontSize: 14,
-    color: '#555',
+    color: '#ddd',
     textAlign: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   chart: {
-    borderRadius: 16,
-    marginBottom: 16,
+    borderRadius: 20,
+    elevation: 3,
+    shadowColor: '#ff4500',
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    marginVertical: 8,
   },
-  statsCard: {
-    backgroundColor: '#e9f5ff',
-    borderRadius: 12,
-    padding: 12,
-    marginTop: 10,
-    marginBottom: 16,
+  stats: {
+    marginTop: 20,
+    width: '100%',
+    backgroundColor: '#1e1e1e',
+    padding: 16,
+    borderRadius: 14,
   },
-  statsText: {
+  statText: {
+    color: '#ddd',
     fontSize: 16,
-    marginBottom: 6,
-    color: '#333',
+    marginBottom: 8,
   },
-  bold: {
-    fontWeight: '600',
-    color: '#007bff',
+  statHighlight: {
+    color: '#ff7f50',
+    fontWeight: '700',
   },
-  messageBox: {
-    padding: 12,
-    backgroundColor: '#fff3cd',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#f9fafaff',
+  motivationBox: {
+    marginTop: 30,
+    backgroundColor: '#2a2a2a',
+    padding: 16,
+    borderRadius: 14,
+    width: '100%',
   },
   motivation: {
-    fontSize: 15,
-    color: '#826613ff',
+    color: '#ff6347',
+    fontWeight: '600',
+    fontSize: 16,
     textAlign: 'center',
   },
 });
-
-export default Statistics;
-
 
 
 

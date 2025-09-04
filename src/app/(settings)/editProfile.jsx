@@ -8,6 +8,8 @@ import CustomSafeArea from "@/components/CustomSafeArea";
 const EditProfile = () => {
   const { user, setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({ username: "", password: "" });
+  const [passwordStrength, setPasswordStrength] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // 👀 toggle state
 
   useEffect(() => {
     if (user) {
@@ -18,10 +20,35 @@ const EditProfile = () => {
     }
   }, [user]);
 
+  // Function to check password strength
+  const checkPasswordStrength = (password) => {
+    if (!password) return "";
+
+    let strength = "";
+    if (password.length < 6) {
+      strength = "Weak ❌ (Too short)";
+    } else if (
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        password
+      )
+    ) {
+      strength = "Strong ✅";
+    } else {
+      strength = "Medium ⚠️ (Add symbols, numbers, and uppercase)";
+    }
+
+    setPasswordStrength(strength);
+  };
+
   const submitChanges = async () => {
     try {
       if (!formData.username || !formData.password) {
         alert("Please fill in all fields");
+        return;
+      }
+
+      if (passwordStrength !== "Strong ✅") {
+        alert("Password must be strong before updating profile!");
         return;
       }
 
@@ -54,6 +81,7 @@ const EditProfile = () => {
 
       {user && (
         <View className="flex-1 gap-4 p-4">
+          {/* Username */}
           <View className="gap-2">
             <Text>Username:</Text>
             <TextInput
@@ -66,19 +94,45 @@ const EditProfile = () => {
             />
           </View>
 
+          {/* Password */}
           <View className="gap-2">
             <Text>Password:</Text>
-            <TextInput
-              secureTextEntry
-              value={formData.password}
-              onChangeText={(text) =>
-                setFormData({ ...formData, password: text })
-              }
-              className="border border-gray-400 p-2 rounded-xl"
-              placeholder="********"
-            />
+            <View className="flex-row items-center border border-gray-400 p-2 rounded-xl">
+              <TextInput
+                secureTextEntry={!showPassword}
+                value={formData.password}
+                onChangeText={(text) => {
+                  setFormData({ ...formData, password: text });
+                  checkPasswordStrength(text);
+                }}
+                className="flex-1"
+                placeholder="********"
+              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                <AntDesign
+                  name={showPassword ? "eye" : "eyeo"}
+                  size={20}
+                  color="gray"
+                />
+              </TouchableOpacity>
+            </View>
+
+            {passwordStrength ? (
+              <Text
+                className={`text-sm ${
+                  passwordStrength.includes("Strong")
+                    ? "text-green-600"
+                    : passwordStrength.includes("Medium")
+                    ? "text-yellow-600"
+                    : "text-red-600"
+                }`}
+              >
+                {passwordStrength}
+              </Text>
+            ) : null}
           </View>
 
+          {/* Submit Button */}
           <TouchableOpacity
             onPress={submitChanges}
             className="bg-brand-purple p-4 rounded-xl mt-auto"
@@ -94,3 +148,5 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
+
+
