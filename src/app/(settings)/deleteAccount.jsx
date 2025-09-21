@@ -17,9 +17,9 @@ import { router } from "expo-router";
 import CustomSafeArea from "@/components/CustomSafeArea";
 
 const options = [
-  "Poor service",
-  "I've found a better alternative",
-  "Privacy concerns",
+  "Poor Service",
+  "Found A Better Service",
+  "Privacy Concerns",
   "Other",
 ];
 
