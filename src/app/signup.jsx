@@ -63,8 +63,6 @@ const SignUp = () => {
       formData.append("photo", { uri: photo, name: filename, type });
     }
 
-    console.log(`Sending to ${SIGNUP_URL}`)
-    console.log(Object.fromEntries(formData.entries())); //remove this in PR
     const response = await fetch(`${SIGNUP_URL}`, {
       method: "POST",
       headers: {
@@ -72,7 +70,7 @@ const SignUp = () => {
       },
       body: formData,
     });
-
+    
     switch (response.status) {
       case 409:
         alert("This email or username already exists");
@@ -82,7 +80,6 @@ const SignUp = () => {
         break;
       case 201:
         const data = await response.json();
-        console.log(JSON.stringify(data)); //remove this in PR
         setUser({
           id: data.id,
           username: data.username,

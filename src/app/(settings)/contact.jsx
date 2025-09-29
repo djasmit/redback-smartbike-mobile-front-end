@@ -14,38 +14,34 @@ import { Link, router, useNavigation } from "expo-router";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 const MESSAGE_URL = `${API_BASE_URL}/messages/`;
-const options = ["General Equiry", "Technical Support", "Billing", "Other"];
+const options = ["General Inquiry", "Technical Support", "Billing Issue", "Other"];
 
 const Contact = () => {
    const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     subject: "",
-    category: "Select...",
+    topic: "Select...",
     email: "",
     message: "",
-    categoryEnum: 0
+    topicEnum: 0
   });
 
   const handleCategorySelect = (option) => {
     const index = options.indexOf(option);
-    setFormData({ ...formData, categoryEnum: index, category: option });
+    setFormData({ ...formData, topicEnum: index, topic: option });
   };
 
   const handleContact = async (inData) => {
-
-    
-    console.log(`${JSON.stringify(formData)}`) //remove this in PR
-    if (formData.categoryEnum == 0) {
-      formData.category = options[3]; formData.categoryEnum = 3;
+    if (formData.topicEnum == 0) {
+      formData.topic = options[3]; formData.topicEnum = 3;
     }
 
     const bodyData = new FormData();
     bodyData.append("id", user.id)
     bodyData.append("email", formData.email);
     bodyData.append("subject", formData.subject);
-    bodyData.append("category", formData.category);
+    bodyData.append("topic", formData.topic);
     bodyData.append("message_body", formData.message);
-    console.log(Object.fromEntries(bodyData.entries())); //remove this in PR
 
     const response = await fetch(`${MESSAGE_URL}`, {
       method: "POST",
@@ -95,9 +91,9 @@ const Contact = () => {
             <DropDown
               data={formData}
               setData={setFormData}
-              category={formData.category}
+              topic={formData.topic}
               options={options}
-              selectedOption={formData.category}
+              selectedOption={formData.topic}
               handlePress={handleCategorySelect}
             ></DropDown>
             <TextInput

@@ -56,9 +56,6 @@ const deleteAccount = () => {
   //sends the terminate account message to the server
   const handleConfirmTA = async (inData) => {
     //PRODUCTION CODE
-    console.log(`Sending to ${SAVE_TA_URL}`);
-    console.log(`${JSON.stringify(user)}`)
-
     if (inData.reasonEnum == 0) {
       inData.reason = "Other"; inData.reasonEnum = 3;
     }
@@ -67,13 +64,11 @@ const deleteAccount = () => {
     // const bodyData = new FormData();
     // bodyData.append("reason", inData.reason);
     // bodyData.append("message_body", inData.moreInfo);
-    //console.log(Object.fromEntries(bodyData.entries())); //remove this in PR
 
     const bodyData = {
       reason: String(inData.reason),
       message_body: String(inData.moreInfo ?? ""),
     };
-    console.log(JSON.stringify(bodyData)); //remove this in PR
 
     const response = await fetch(`${SAVE_TA_URL}`, {
       method: "POST",

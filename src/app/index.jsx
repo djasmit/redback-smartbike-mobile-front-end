@@ -32,9 +32,6 @@ const index = () => {
     formData.append("email", loginData.email);
     formData.append("password", loginData.password);
 
-    console.log(`Sending to ${LOGIN_URL}`)
-    console.log(Object.fromEntries(formData.entries())); //remove this in PR
-
     const response = await fetch(`${LOGIN_URL}`, {
       method: "POST",
       headers: {
@@ -42,6 +39,7 @@ const index = () => {
       },
       body: formData,
     });
+
     switch (response.status) {
       case 404:
         alert("Invalid credentials: email doesn't exist");
@@ -51,7 +49,6 @@ const index = () => {
         break;
       case 200:
         const data = await response.json();
-        console.log(JSON.stringify(data)); //remove this in PR
         setUser({
           id: data.id,
           username: data.account_details[0].username,
